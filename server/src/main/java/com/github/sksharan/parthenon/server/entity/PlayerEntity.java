@@ -2,8 +2,6 @@ package com.github.sksharan.parthenon.server.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -13,10 +11,6 @@ import javax.validation.constraints.NotNull;
 public class PlayerEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
-
     @NotNull
     @Column(name = "name")
     private String name;
@@ -46,14 +40,6 @@ public class PlayerEntity {
         this.maxHealth = maxHealth;
         this.expLevel = expLevel;
         this.foodLevel = foodLevel;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {

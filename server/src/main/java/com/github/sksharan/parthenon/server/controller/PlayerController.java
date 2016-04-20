@@ -23,12 +23,8 @@ public class PlayerController {
 
     @RequestMapping(method = RequestMethod.POST, headers = "content-type=application/json")
     @ResponseBody
-    public void updatePlayer(@RequestBody PlayerModel playerModel) {
-        System.out.println("name: " + playerModel.getName());
-        System.out.println("health: " + playerModel.getHealth());
-        System.out.println("maxHealth: " + playerModel.getMaxHealth());
-        System.out.println("expLevel: " + playerModel.getExpLevel());
-        System.out.println("foodLevel: " + playerModel.getFoodLevel());
+    public void savePlayer(@RequestBody PlayerModel playerModel) {
+        playerService.savePlayer(playerModel);
     }
 
 }

@@ -37,8 +37,15 @@ public class PlayerEntity {
     @Column(name = "food_level")
     private int foodLevel;
 
-    public PlayerEntity(String name) {
+    public PlayerEntity() {
+    }
+
+    public PlayerEntity(String name, double health, double maxHealth, int expLevel, int foodLevel) {
         this.name = name;
+        this.health = health;
+        this.maxHealth = maxHealth;
+        this.expLevel = expLevel;
+        this.foodLevel = foodLevel;
     }
 
     public Long getId() {

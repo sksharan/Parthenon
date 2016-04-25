@@ -11,7 +11,6 @@ import com.github.sksharan.parthenon.server.entity.PlayerEntity;
 
 @Service
 public class PlayerServiceImpl implements PlayerService {
-
     private ModelMapper modelMapper;
     private PlayerRepository playerRepository;
 

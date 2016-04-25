@@ -15,16 +15,25 @@ public class ParthenonMapper {
     @Bean
     public ModelMapper modelMapper() {
         ModelMapper modelMapper = new ModelMapper();
-        modelMapper.addConverter(playerConverter);
+        modelMapper.addConverter(playerModelToPlayerEntity);
+        modelMapper.addConverter(playerEntityToPlayerModel);
         modelMapper.validate();
         return modelMapper;
     }
 
-    private Converter<PlayerModel, PlayerEntity> playerConverter = new AbstractConverter<PlayerModel, PlayerEntity>() {
+    private Converter<PlayerModel, PlayerEntity> playerModelToPlayerEntity = new AbstractConverter<PlayerModel, PlayerEntity>() {
         @Override
-        protected PlayerEntity convert(PlayerModel player) {
-            return new PlayerEntity(player.getName(), player.getHealth(), player.getMaxHealth(),
-                    player.getExpLevel(), player.getFoodLevel());
+        protected PlayerEntity convert(PlayerModel playerModel) {
+            return new PlayerEntity(playerModel.getName(), playerModel.getHealth(), playerModel.getMaxHealth(),
+                    playerModel.getExpLevel(), playerModel.getFoodLevel());
+        }
+    };
+
+    private Converter<PlayerEntity, PlayerModel> playerEntityToPlayerModel = new AbstractConverter<PlayerEntity, PlayerModel>() {
+        @Override
+        protected PlayerModel convert(PlayerEntity playerEntity) {
+            return new PlayerModel(playerEntity.getName(), playerEntity.getHealth(), playerEntity.getMaxHealth(),
+                    playerEntity.getExpLevel(), playerEntity.getFoodLevel());
         }
     };
 }

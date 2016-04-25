@@ -28,7 +28,7 @@ public class ParthenonMapperTest {
     }
 
     @Test
-    public void testPlayerMapper() {
+    public void testPlayerModelToPlayerEntityMap() {
         PlayerModel playerModel = mock(PlayerModel.class);
         when(playerModel.getName()).thenReturn("Test");
         when(playerModel.getHealth()).thenReturn(12.0);
@@ -42,5 +42,22 @@ public class ParthenonMapperTest {
         assertEquals(20.0, playerEntity.getMaxHealth(), 0.1);
         assertEquals(7, playerEntity.getExpLevel());
         assertEquals(12, playerEntity.getFoodLevel());
+    }
+
+    @Test
+    public void testPlayerEntityToPlayerModelMap() {
+        PlayerEntity playerEntity = mock(PlayerEntity.class);
+        when(playerEntity.getName()).thenReturn("Test");
+        when(playerEntity.getHealth()).thenReturn(12.0);
+        when(playerEntity.getMaxHealth()).thenReturn(20.0);
+        when(playerEntity.getExpLevel()).thenReturn(7);
+        when(playerEntity.getFoodLevel()).thenReturn(12);
+
+        PlayerModel playerModel = modelMapper.map(playerEntity, PlayerModel.class);
+        assertEquals("Test", playerModel.getName());
+        assertEquals(12.0, playerModel.getHealth(), 0.1);
+        assertEquals(20.0, playerModel.getMaxHealth(), 0.1);
+        assertEquals(7, playerModel.getExpLevel());
+        assertEquals(12, playerModel.getFoodLevel());
     }
 }

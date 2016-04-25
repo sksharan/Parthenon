@@ -1,4 +1,4 @@
-package com.github.sksharan.parthenon.plugin.guice;
+package com.github.sksharan.parthenon.plugin.mapper;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -6,26 +6,17 @@ import static org.mockito.Mockito.when;
 
 import org.bukkit.entity.Player;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import org.modelmapper.ModelMapper;
 
 import com.github.sksharan.parthenon.common.model.PlayerModel;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
+import com.github.sksharan.parthenon.plugin.mapper.ParthenonMapper;
 
-public class MapperModuleTest {
-    private static Injector injector;
-    private ModelMapper modelMapper;
-
-    @BeforeClass
-    public static void setUpClass() {
-        injector = Guice.createInjector(new MapperModule());
-    }
+public class ParthenonMapperTest {
+    private ParthenonMapper parthenonMapper;
 
     @Before
     public void setUp() {
-        modelMapper = injector.getInstance(ModelMapper.class);
+        parthenonMapper = new ParthenonMapper();
     }
 
     @Test
@@ -37,7 +28,7 @@ public class MapperModuleTest {
         when(player.getLevel()).thenReturn(7);
         when(player.getFoodLevel()).thenReturn(12);
 
-        PlayerModel playerModel = modelMapper.map(player, PlayerModel.class);
+        PlayerModel playerModel = parthenonMapper.map(player);
         assertEquals("Player", playerModel.getName());
         assertEquals(15.0, playerModel.getHealth(), 0.1);
         assertEquals(20.0, playerModel.getMaxHealth(), 0.1);

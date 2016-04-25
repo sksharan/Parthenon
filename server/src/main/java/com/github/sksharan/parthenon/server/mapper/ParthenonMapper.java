@@ -1,4 +1,4 @@
-package com.github.sksharan.parthenon.server;
+package com.github.sksharan.parthenon.server.mapper;
 
 import org.modelmapper.AbstractConverter;
 import org.modelmapper.Converter;

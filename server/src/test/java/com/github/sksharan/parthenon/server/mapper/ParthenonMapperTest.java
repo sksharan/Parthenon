@@ -1,4 +1,4 @@
-package com.github.sksharan.parthenon.server;
+package com.github.sksharan.parthenon.server.mapper;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -13,11 +13,12 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.github.sksharan.parthenon.common.model.PlayerModel;
+import com.github.sksharan.parthenon.server.Parthenon;
 import com.github.sksharan.parthenon.server.entity.PlayerEntity;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(Parthenon.class)
-public class ParthenonConfigurationTest {
+public class ParthenonMapperTest {
     @Autowired
     private ModelMapper modelMapper;
 

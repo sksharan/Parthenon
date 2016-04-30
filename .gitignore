@@ -34,3 +34,6 @@ local.properties
 .texlipse
 .springBeans
 .recommenders/
+
+### Bower ###
+client/src/main/webapp/lib/

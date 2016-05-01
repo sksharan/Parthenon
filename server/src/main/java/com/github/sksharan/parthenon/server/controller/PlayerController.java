@@ -1,6 +1,9 @@
 package com.github.sksharan.parthenon.server.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +22,11 @@ public class PlayerController {
     @Autowired
     public PlayerController(PlayerService playerService) {
         this.playerService = playerService;
+    }
+
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<PlayerModel> getAllPlayers() {
+        return playerService.getAllPlayers();
     }
 
     @RequestMapping(method = RequestMethod.POST, headers = "content-type=application/json")

@@ -1,5 +1,9 @@
 package com.github.sksharan.parthenon.server.service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +28,17 @@ public class PlayerServiceImpl implements PlayerService {
     @Transactional
     public void savePlayer(PlayerModel player) {
         playerRepository.save(modelMapper.map(player, PlayerEntity.class));
+    }
+
+    @Override
+    public List<PlayerModel> getAllPlayers() {
+        List<PlayerModel> playerModels = new ArrayList<PlayerModel>();
+        playerRepository.findAll().forEach(new Consumer<PlayerEntity>() {
+            @Override public void accept(PlayerEntity entity) {
+                playerModels.add(modelMapper.map(entity, PlayerModel.class));
+            }
+        });
+        return playerModels;
     }
 
 }

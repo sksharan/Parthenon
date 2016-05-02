@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Parthenon</title>
-    <script src="lib/requirejs/require.js" data-main="js/config.js"></script>
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css">
+    <script src="lib/requirejs/require.js" data-main="js/Configuration.js"></script>
 </head>
 <body>
-    <p id="test"></p>
+    <div class="container-fluid">
+        <div data-ng-view></div>
+    </div>
 </body>
 </html>

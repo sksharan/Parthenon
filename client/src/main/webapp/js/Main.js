@@ -19,7 +19,7 @@ requirejs.config({
     }
 });
 
-require(['js/ParthenonApp', 'js/ParthenonControllers'], function(app) {
+require(['js/ParthenonApp', 'js/ParthenonAppControllers', 'js/ParthenonAppServices'], function(app) {
     app.config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/player', {
             templateUrl: 'js/template/PlayerTemplate.html',

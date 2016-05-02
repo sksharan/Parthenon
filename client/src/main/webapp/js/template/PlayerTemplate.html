@@ -1,1 +1,20 @@
-<p>The test text is: {{test}}</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Health</td>
+            <td>Max Health</td>
+            <td>Exp Level</td>
+            <td>Food Level</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr data-ng-repeat="player in players">
+            <td>{{player.name}}</td>
+            <td>{{player.health}}</td>
+            <td>{{player.maxHealth}}</td>
+            <td>{{player.expLevel}}</td>
+            <td>{{player.foodLevel}}</td>
+        </tr>
+    </tbody>
+</table>

@@ -2,12 +2,16 @@ requirejs.config({
     baseUrl: '/',
     paths: {
         'angular': 'lib/angular/angular',
+        'angular-resource': 'lib/angular-resource/angular-resource',
         'angular-route': 'lib/angular-route/angular-route',
         'jquery': 'lib/jquery/dist/jquery'
     },
     shim: {
         'angular': {
             exports: 'angular'
+        },
+        'angular-resource': {
+            deps: ['angular']
         },
         'angular-route': {
             deps: ['angular']

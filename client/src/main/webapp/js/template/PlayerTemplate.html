@@ -3,7 +3,6 @@
         <tr>
             <td>Name</td>
             <td>Health</td>
-            <td>Max Health</td>
             <td>Exp Level</td>
             <td>Food Level</td>
         </tr>
@@ -11,8 +10,17 @@
     <tbody>
         <tr data-ng-repeat="player in players">
             <td>{{player.name}}</td>
-            <td>{{player.health}}</td>
-            <td>{{player.maxHealth}}</td>
+            <td>
+                <div data-ng-repeat="i in [].constructor(numFullHearts(player.health)) track by $index" class="icon-container">
+                    <img src="img/heart_full.png" class="heart-icon"></img>
+                </div>
+                <div data-ng-repeat="i in [].constructor(numHalfHearts(player.health)) track by $index" class="icon-container">
+                    <img src="img/heart_half.png" class="heart-icon"></img>
+                </div>
+                <div data-ng-repeat="i in [].constructor(numEmptyHearts(player.health)) track by $index" class="icon-container">
+                    <img src="img/heart_empty.png" class="heart-icon"></img>
+                </div>
+            </td>
             <td>{{player.expLevel}}</td>
             <td>{{player.foodLevel}}</td>
         </tr>

@@ -1,4 +1,4 @@
-define(['js/ParthenonApp', 'js/service/PlayerService'], function(app) {
+define(['js/ParthenonApp', 'js/filter/RangeFilter', 'js/service/PlayerService'], function(app) {
     app.controller('PlayerController',
             ['$scope', 'PlayerService', function($scope, PlayerService) {
         $scope.players = PlayerService.getPlayers();

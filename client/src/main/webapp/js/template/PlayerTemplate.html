@@ -11,25 +11,25 @@
         <tr data-ng-repeat="player in players">
             <td>{{player.name}}</td>
             <td>
-                <div data-ng-repeat="i in [].constructor(numFullHeartIcons(player.health)) track by $index" class="icon-container">
+                <div data-ng-repeat="i in [] | range:numFullHeartIcons(player.health)" class="icon-container">
                     <img src="img/heart_full.png" class="heart-icon"></img>
                 </div>
-                <div data-ng-repeat="i in [].constructor(numHalfHeartIcons(player.health)) track by $index" class="icon-container">
+                <div data-ng-repeat="i in [] | range:numHalfHeartIcons(player.health)" class="icon-container">
                     <img src="img/heart_half.png" class="heart-icon"></img>
                 </div>
-                <div data-ng-repeat="i in [].constructor(numEmptyHeartIcons(player.health)) track by $index" class="icon-container">
+                <div data-ng-repeat="i in [] | range:numEmptyHeartIcons(player.health)" class="icon-container">
                     <img src="img/heart_empty.png" class="heart-icon"></img>
                 </div>
             </td>
             <td>{{player.expLevel}}</td>
             <td>
-                <div data-ng-repeat="i in [].constructor(numFullHungerIcons(player.foodLevel)) track by $index" class="icon-container">
+                <div data-ng-repeat="i in [] | range:numFullHungerIcons(player.foodLevel)" class="icon-container">
                     <img src="img/hunger_full.png" class="hunger-icon"></img>
                 </div>
-                <div data-ng-repeat="i in [].constructor(numHalfHungerIcons(player.foodLevel)) track by $index" class="icon-container">
+                <div data-ng-repeat="i in [] | range:numHalfHungerIcons(player.foodLevel)" class="icon-container">
                     <img src="img/hunger_half.png" class="hunger-icon"></img>
                 </div>
-                <div data-ng-repeat="i in [].constructor(numEmptyHeartIcons(player.foodLevel)) track by $index" class="icon-container">
+                <div data-ng-repeat="i in [] | range:numEmptyHungerIcons(player.foodLevel)" class="icon-container">
                     <img src="img/hunger_empty.png" class="hunger-icon"></img>
                 </div>
             </td>

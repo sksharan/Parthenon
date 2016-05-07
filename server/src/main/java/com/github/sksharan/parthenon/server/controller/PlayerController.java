@@ -30,7 +30,8 @@ public class PlayerController {
         return playerService.getAllPlayers();
     }
 
-    @RequestMapping(method = RequestMethod.POST, headers = "content-type=application/json")
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public void savePlayer(@RequestBody PlayerModel playerModel) {
         playerService.savePlayer(playerModel);

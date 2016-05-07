@@ -1,16 +1,16 @@
-<table class="table table-striped">
+<table class="table table-condensed table-layout-fixed">
     <thead>
         <tr>
-            <td>Name</td>
-            <td>Health</td>
-            <td>Exp Level</td>
-            <td>Food</td>
+            <td class="pixel-text-regular text-center">Name</td>
+            <td class="pixel-text-regular text-center">Health</td>
+            <td class="pixel-text-regular text-center">Level</td>
+            <td class="pixel-text-regular text-center">Food</td>
         </tr>
     </thead>
     <tbody>
         <tr data-ng-repeat="player in players">
-            <td>{{player.name}}</td>
-            <td>
+            <td class="pixel-text-regular text-center vertical-align-center">{{player.name}}</td>
+            <td class="text-center vertical-align-center">
                 <div data-ng-repeat="i in [] | range:numFullHeartIcons(player.health)" class="icon-container">
                     <img src="img/heart_full.png" class="heart-icon"></img>
                 </div>
@@ -21,8 +21,8 @@
                     <img src="img/heart_empty.png" class="heart-icon"></img>
                 </div>
             </td>
-            <td>{{player.expLevel}}</td>
-            <td>
+            <td class="exp-level-text text-center vertical-align-center">{{player.expLevel}}</td>
+            <td class="text-center vertical-align-center">
                 <div data-ng-repeat="i in [] | range:numFullHungerIcons(player.foodLevel)" class="icon-container">
                     <img src="img/hunger_full.png" class="hunger-icon"></img>
                 </div>

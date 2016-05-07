@@ -1,0 +1,20 @@
+@font-face {
+    /* Font by Manchson, can be downloaded at http://www.1001fonts.com/basis33-font.html#styles */
+    font-family: pixel;
+    src: url("../font/basis33.regular.ttf");
+}
+
+.pixel-text-regular {
+    font-family: pixel;
+    font-size: 1.5em;
+}
+
+.exp-level-text {
+    color: #43AB1F;
+    font-family: pixel;
+    font-size: 1.7em;
+}
+
+.text-center {
+    text-align: center;
+}

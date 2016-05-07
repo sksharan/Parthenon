@@ -1,0 +1,8 @@
+.table-layout-fixed {
+    table-layout: fixed;
+}
+
+/* Cancel Bootstrap's vertical-align: center on tables */
+.table > tbody > tr > td {
+     vertical-align: middle !important;
+}

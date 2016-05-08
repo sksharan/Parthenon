@@ -2,8 +2,6 @@ package com.github.sksharan.parthenon.plugin.schedule;
 
 import java.util.logging.Level;
 
-import org.apache.commons.lang.exception.ExceptionUtils;
-import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.bukkit.OfflinePlayer;
 
@@ -39,19 +37,16 @@ public class SaveAllPlayersRunnable implements Runnable {
                     parthenonPlugin.getLogger().log(Level.INFO, offlinePlayer.getName() + " is currently online");
                     PlayerModel playerModel = parthenonMapper.map(offlinePlayer.getPlayer());
 
-                    HttpResponse response = networkUtils.sendPostRequest(ParthenonUrl.BASE_URL+ParthenonUrl.PLAYER, playerModel);
-                    if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+                    int statusCode = networkUtils.sendPostRequest(ParthenonUrl.BASE_URL+ParthenonUrl.PLAYER, playerModel);
+                    if (statusCode == HttpStatus.SC_OK) {
                         parthenonPlugin.getLogger().log(Level.INFO, "Successfully saved player information for " + playerModel.getName());
-                    } else {
-                        parthenonPlugin.getLogger().log(Level.SEVERE, String.format("Failed to save player information for %s with reason %s",
-                                playerModel.getName(), response.getStatusLine().getReasonPhrase()));
                     }
                 } else {
                     parthenonPlugin.getLogger().log(Level.INFO, offlinePlayer.getName() + " is currently offline");
                 }
             }
         } catch (Exception e) {
-            parthenonPlugin.getLogger().log(Level.SEVERE, ExceptionUtils.getStackTrace(e));
+            parthenonPlugin.getLogger().log(Level.SEVERE, e.getMessage());
         }
     }
 

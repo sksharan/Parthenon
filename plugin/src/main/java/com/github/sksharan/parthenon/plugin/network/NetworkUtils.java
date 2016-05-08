@@ -3,15 +3,13 @@ package com.github.sksharan.parthenon.plugin.network;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Arrays;
 
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ByteArrayEntity;
+import org.apache.http.util.EntityUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.inject.Inject;
@@ -29,19 +27,17 @@ public class NetworkUtils {
         this.objectMapper = objectMapper;
     }
 
-    public HttpResponse sendPostRequest(String uri, NameValuePair... parameters) throws IOException, URISyntaxException {
-        HttpPost httpPost = httpPostProvider.get();
-        httpPost.setURI(new URI(uri));
-        httpPost.setEntity(new UrlEncodedFormEntity(Arrays.asList(parameters), "UTF-8"));
-        return httpClient.execute(httpPost);
-    }
-
-    public HttpResponse sendPostRequest(String uri, Object json) throws URISyntaxException, ClientProtocolException, IOException {
+    /** Sends a POST request to the specified URI and returns the status code of the response. */
+    public int sendPostRequest(String uri, Object json) throws URISyntaxException, ClientProtocolException, IOException {
         HttpPost httpPost = httpPostProvider.get();
         httpPost.setURI(new URI(uri));
         httpPost.setHeader("Content-Type", "application/json");
         httpPost.setEntity(new ByteArrayEntity(objectMapper.writeValueAsString(json).getBytes()));
-        return httpClient.execute(httpPost);
+
+        HttpResponse response = httpClient.execute(httpPost);
+        int statusCode = response.getStatusLine().getStatusCode();
+        EntityUtils.consume(response.getEntity());  // Connection pool exception can occur if entities are not consumed
+        return statusCode;
     }
 
 }

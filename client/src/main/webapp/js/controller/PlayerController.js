@@ -1,7 +1,15 @@
 define(['js/ParthenonApp', 'js/filter/RangeFilter', 'js/service/PlayerService'], function(app) {
     app.controller('PlayerController',
-            ['$scope', 'PlayerService', function($scope, PlayerService) {
-        $scope.players = PlayerService.getPlayers();
+            ['$scope', '$timeout', 'PlayerService', function($scope, $timeout, PlayerService) {
+
+        /** Fetch updated list of players from server every few seconds. */
+        $scope.players = [];
+        (function getPlayers() {
+            PlayerService.getPlayers().$promise.then(function(result) {
+                $scope.players = result;
+                $timeout(getPlayers, 5000);
+            });
+        })();
 
         /** Returns the number of full heart icons used to represent the player's health. */
         $scope.numFullHeartIcons = function(health) {

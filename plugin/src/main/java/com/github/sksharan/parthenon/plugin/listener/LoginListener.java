@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
 
-import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -34,13 +33,10 @@ public class LoginListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) throws IOException, URISyntaxException {
         PlayerModel playerModel = parthenonMapper.map(event.getPlayer());
-        HttpResponse response = networkUtils.sendPostRequest(ParthenonUrl.BASE_URL+ParthenonUrl.PLAYER, playerModel);
+        int statusCode = networkUtils.sendPostRequest(ParthenonUrl.BASE_URL+ParthenonUrl.PLAYER, playerModel);
 
-        if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+        if (statusCode == HttpStatus.SC_OK) {
             parthenonPlugin.getLogger().log(Level.INFO, "Successfully saved player information for " + playerModel.getName());
-        } else {
-            parthenonPlugin.getLogger().log(Level.SEVERE, String.format("Failed to save player information for %s with reason %s",
-                    playerModel.getName(), response.getStatusLine().getReasonPhrase()));
         }
     }
 }

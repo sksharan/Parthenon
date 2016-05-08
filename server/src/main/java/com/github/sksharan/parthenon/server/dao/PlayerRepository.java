@@ -8,4 +8,6 @@ import com.github.sksharan.parthenon.server.entity.PlayerEntity;
 @Repository
 public interface PlayerRepository extends CrudRepository<PlayerEntity, Long> {
 
+    public PlayerEntity findByName(String name);
+
 }

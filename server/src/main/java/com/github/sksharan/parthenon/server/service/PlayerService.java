@@ -8,6 +8,10 @@ public interface PlayerService {
 
     public void savePlayer(PlayerModel player);
 
+    public PlayerModel getPlayer(String name);
+
     public List<PlayerModel> getAllPlayers();
+
+    public boolean playerExists(String name);
 
 }

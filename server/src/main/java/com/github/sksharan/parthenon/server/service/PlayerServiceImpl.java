@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.github.sksharan.parthenon.common.model.PlayerModel;
 import com.github.sksharan.parthenon.server.dao.PlayerRepository;
 import com.github.sksharan.parthenon.server.entity.PlayerEntity;
+import com.github.sksharan.parthenon.server.exception.PlayerServiceException;
 
 @Service
 public class PlayerServiceImpl implements PlayerService {
@@ -31,6 +32,15 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
+    public PlayerModel getPlayer(String name) {
+        PlayerEntity playerEntity = playerRepository.findByName(name);
+        if (playerEntity == null) {
+            throw new PlayerServiceException(String.format("Player %s does not exist", name));
+        }
+        return modelMapper.map(playerEntity, PlayerModel.class);
+    }
+
+    @Override
     public List<PlayerModel> getAllPlayers() {
         List<PlayerModel> playerModels = new ArrayList<PlayerModel>();
         playerRepository.findAll().forEach(new Consumer<PlayerEntity>() {
@@ -39,6 +49,11 @@ public class PlayerServiceImpl implements PlayerService {
             }
         });
         return playerModels;
+    }
+
+    @Override
+    public boolean playerExists(String name) {
+        return playerRepository.findByName(name) != null;
     }
 
 }

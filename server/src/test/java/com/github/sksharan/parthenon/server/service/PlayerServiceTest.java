@@ -1,6 +1,7 @@
 package com.github.sksharan.parthenon.server.service;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
@@ -21,6 +22,7 @@ import org.modelmapper.ModelMapper;
 import com.github.sksharan.parthenon.common.model.PlayerModel;
 import com.github.sksharan.parthenon.server.dao.PlayerRepository;
 import com.github.sksharan.parthenon.server.entity.PlayerEntity;
+import com.github.sksharan.parthenon.server.exception.PlayerServiceException;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PlayerServiceTest {
@@ -38,6 +40,20 @@ public class PlayerServiceTest {
     public void testSavePlayer() {
         playerService.savePlayer(mock(PlayerModel.class));
         verify(playerRepository).save(any(PlayerEntity.class));
+    }
+
+    @Test
+    public void testGetPlayer() {
+        PlayerEntity entity = mock(PlayerEntity.class);
+        PlayerModel model = mock(PlayerModel.class);
+        when(playerRepository.findByName("name")).thenReturn(entity);
+        when(modelMapper.map(entity, PlayerModel.class)).thenReturn(model);
+        assertEquals(model, playerService.getPlayer("name"));
+    }
+
+    @Test(expected = PlayerServiceException.class)
+    public void testGetPlayerNotExists() {
+        playerService.getPlayer("name");
     }
 
     @Test
@@ -64,5 +80,17 @@ public class PlayerServiceTest {
         assertTrue(models.contains(model1));
         assertTrue(models.contains(model2));
         assertTrue(models.contains(model3));
+    }
+
+    @Test
+    public void testPlayerExists() {
+        when(playerRepository.findByName(any(String.class))).thenReturn(mock(PlayerEntity.class));
+        assertTrue(playerService.playerExists("name"));
+    }
+
+    @Test
+    public void testPlayerNotExists() {
+        when(playerRepository.findByName("name")).thenReturn(null);
+        assertFalse(playerService.playerExists("name"));
     }
 }

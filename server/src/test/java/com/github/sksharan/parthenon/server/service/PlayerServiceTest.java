@@ -37,9 +37,28 @@ public class PlayerServiceTest {
     }
 
     @Test
-    public void testSavePlayer() {
-        playerService.savePlayer(mock(PlayerModel.class));
-        verify(playerRepository).save(any(PlayerEntity.class));
+    public void testSaveNewPlayer() {
+        PlayerModel model = mock(PlayerModel.class);
+        PlayerEntity entity = mock(PlayerEntity.class);
+        when(modelMapper.map(model, PlayerEntity.class)).thenReturn(entity);
+        when(playerRepository.findByName(any(String.class))).thenReturn(null);
+
+        playerService.savePlayer(model);
+        verify(playerRepository).save(entity);
+    }
+
+    @Test
+    public void testSaveExistingPlayer() {
+        PlayerModel model = mock(PlayerModel.class);
+        PlayerEntity entity = mock(PlayerEntity.class);
+        PlayerEntity storedEntity = mock(PlayerEntity.class);
+        when(modelMapper.map(model, PlayerEntity.class)).thenReturn(entity);
+        when(playerRepository.findByName(any(String.class))).thenReturn(storedEntity);
+
+        playerService.savePlayer(model);
+        verify(playerRepository).save(entity);
+        verify(entity).setId(any(Integer.class));
+        verify(storedEntity).getId();
     }
 
     @Test

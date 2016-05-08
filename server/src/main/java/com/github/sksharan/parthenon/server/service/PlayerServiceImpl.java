@@ -28,7 +28,11 @@ public class PlayerServiceImpl implements PlayerService {
     @Override
     @Transactional
     public void savePlayer(PlayerModel player) {
-        playerRepository.save(modelMapper.map(player, PlayerEntity.class));
+        PlayerEntity entity = modelMapper.map(player, PlayerEntity.class);
+        if (playerRepository.findByName(player.getName()) != null) {
+            entity.setId(playerRepository.findByName(player.getName()).getId());
+        }
+        playerRepository.save(entity);
     }
 
     @Override

@@ -2,37 +2,35 @@ package com.github.sksharan.parthenon.server.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "player")
 public class PlayerEntity {
 
-    @Id
-    @NotNull
-    @Column(name = "name")
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", unique = true, nullable = false)
+    private int id;
+
+    @Column(name = "name", unique = true, nullable = false)
     private String name;
 
-    @NotNull
-    @Column(name = "health")
+    @Column(name = "health", nullable = false)
     private double health;
 
-    @NotNull
-    @Column(name = "max_health")
+    @Column(name = "max_health", nullable = false)
     private double maxHealth;
 
-    @NotNull
-    @Column(name = "exp_level")
+    @Column(name = "exp_level", nullable = false)
     private int expLevel;
 
-    @NotNull
-    @Column(name = "food_level")
+    @Column(name = "food_level", nullable = false)
     private int foodLevel;
 
-    public PlayerEntity() {
-    }
+    protected PlayerEntity() {}
 
     public PlayerEntity(String name, double health, double maxHealth, int expLevel, int foodLevel) {
         this.name = name;
@@ -40,6 +38,14 @@ public class PlayerEntity {
         this.maxHealth = maxHealth;
         this.expLevel = expLevel;
         this.foodLevel = foodLevel;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

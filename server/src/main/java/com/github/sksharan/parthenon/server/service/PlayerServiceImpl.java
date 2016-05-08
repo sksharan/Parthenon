@@ -36,6 +36,17 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
+    @Transactional
+    public void updatePlayerOnline(String name, boolean isOnline) {
+        PlayerEntity playerEntity = playerRepository.findByName(name);
+        if (playerEntity == null) {
+            throw new PlayerServiceException(String.format("Player %s does not exist", name));
+        }
+        playerEntity.setOnline(isOnline);
+        playerRepository.save(playerEntity);
+    }
+
+    @Override
     public PlayerModel getPlayer(String name) {
         PlayerEntity playerEntity = playerRepository.findByName(name);
         if (playerEntity == null) {

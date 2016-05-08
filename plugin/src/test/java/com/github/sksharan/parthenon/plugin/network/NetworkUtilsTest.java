@@ -1,6 +1,5 @@
 package com.github.sksharan.parthenon.plugin.network;
 
-import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -11,13 +10,12 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ByteArrayEntity;
+import org.apache.http.message.BasicNameValuePair;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -40,22 +38,31 @@ public class NetworkUtilsTest {
     }
 
     @Test
-    public void testSendPostRequestByteEntity() throws ClientProtocolException, URISyntaxException, IOException {
+    public void testSendPostRequestFormUrlEncoded() throws IOException, URISyntaxException {
         HttpPost httpPost = mock(HttpPost.class);
         when(httpPostProvider.get()).thenReturn(httpPost);
 
-        HttpResponse httpResponse = mock(HttpResponse.class);
-        StatusLine statusLine = mock(StatusLine.class);
-        when(httpClient.execute(httpPost)).thenReturn(httpResponse);
-        when(httpResponse.getStatusLine()).thenReturn(statusLine);
-        when(statusLine.getStatusCode()).thenReturn(HttpStatus.SC_OK);
+        networkUtils.sendPostRequestFormUrlEncoded("http://www.github.com",
+                new BasicNameValuePair("name1", "value1"),
+                new BasicNameValuePair("name2", "value2"));
 
-        int statusCode = networkUtils.sendPostRequest("http://www.github.com", new PlayerModel());
-        assertEquals(HttpStatus.SC_OK, statusCode);
+        verify(httpPostProvider, times(1)).get();
+        verify(httpPost, times(1)).setURI(any(URI.class));
+        verify(httpPost, times(1)).setEntity(any(UrlEncodedFormEntity.class));
+        verify(httpClient, times(1)).execute(httpPost);
+    }
+
+    @Test
+    public void testSendPostRequestJson() throws ClientProtocolException, URISyntaxException, IOException {
+        HttpPost httpPost = mock(HttpPost.class);
+        when(httpPostProvider.get()).thenReturn(httpPost);
+
+        networkUtils.sendPostRequestJson("http://www.github.com", new PlayerModel());
 
         verify(httpPostProvider, times(1)).get();
         verify(httpPost, times(1)).setURI(any(URI.class));
         verify(httpPost, times(1)).setHeader("Content-Type", "application/json");
         verify(httpPost, times(1)).setEntity(any(ByteArrayEntity.class));
+        verify(httpClient, times(1)).execute(httpPost);
     }
 }

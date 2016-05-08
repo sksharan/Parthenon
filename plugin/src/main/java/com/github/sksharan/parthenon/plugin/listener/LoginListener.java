@@ -2,15 +2,15 @@ package com.github.sksharan.parthenon.plugin.listener;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.logging.Level;
 
-import org.apache.http.HttpStatus;
+import org.apache.http.HttpResponse;
+import org.apache.http.util.EntityUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 import com.github.sksharan.parthenon.common.model.PlayerModel;
-import com.github.sksharan.parthenon.common.url.ParthenonUrl;
+import com.github.sksharan.parthenon.common.url.PlayerUrl;
 import com.github.sksharan.parthenon.plugin.ParthenonPlugin;
 import com.github.sksharan.parthenon.plugin.mapper.ParthenonMapper;
 import com.github.sksharan.parthenon.plugin.network.NetworkUtils;
@@ -33,10 +33,10 @@ public class LoginListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) throws IOException, URISyntaxException {
         PlayerModel playerModel = parthenonMapper.map(event.getPlayer());
-        int statusCode = networkUtils.sendPostRequest(ParthenonUrl.BASE_URL+ParthenonUrl.PLAYER, playerModel);
-
-        if (statusCode == HttpStatus.SC_OK) {
-            parthenonPlugin.getLogger().log(Level.INFO, "Successfully saved player information for " + playerModel.getName());
-        }
+        HttpResponse response = networkUtils.sendPostRequestJson(PlayerUrl.savePlayerUrl(), playerModel);
+        networkUtils.checkHttpResponse(parthenonPlugin, response,
+                "Successfully saved online player information for " + playerModel.getName(),
+                "Failed to save player information for " + playerModel.getName() + " with reason " + response.getStatusLine().getReasonPhrase());
+        EntityUtils.consume(response.getEntity());
     }
 }

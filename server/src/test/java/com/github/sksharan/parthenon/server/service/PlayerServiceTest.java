@@ -62,6 +62,15 @@ public class PlayerServiceTest {
     }
 
     @Test
+    public void testUpdatePlayerOnline() {
+        PlayerEntity entity = mock(PlayerEntity.class);
+        when(playerRepository.findByName(any(String.class))).thenReturn(entity);
+        playerService.updatePlayerOnline("name", true);
+        verify(entity).setOnline(true);
+        verify(playerRepository).save(entity);
+    }
+
+    @Test
     public void testGetPlayer() {
         PlayerEntity entity = mock(PlayerEntity.class);
         PlayerModel model = mock(PlayerModel.class);

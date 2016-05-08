@@ -5,11 +5,15 @@
             <td class="pixel-text-regular text-center">Health</td>
             <td class="pixel-text-regular text-center">Level</td>
             <td class="pixel-text-regular text-center">Food</td>
+            <td class="pixel-text-regular text-center">Status</td>
         </tr>
     </thead>
     <tbody>
         <tr data-ng-repeat="player in players">
+            <!-- Player name  -->
             <td class="pixel-text-regular text-center vertical-align-center">{{player.name}}</td>
+
+            <!-- Player health -->
             <td class="text-center vertical-align-center">
                 <div data-ng-repeat="i in [] | range:numFullHeartIcons(player.health)" class="icon-container">
                     <img src="img/heart_full.png" class="heart-icon"></img>
@@ -21,7 +25,11 @@
                     <img src="img/heart_empty.png" class="heart-icon"></img>
                 </div>
             </td>
-            <td class="exp-level-text text-center vertical-align-center">{{player.expLevel}}</td>
+
+            <!-- Player level -->
+            <td class="pixel-text-regular green-color text-center vertical-align-center">{{player.expLevel}}</td>
+
+            <!-- Player food -->
             <td class="text-center vertical-align-center">
                 <div data-ng-repeat="i in [] | range:numFullHungerIcons(player.foodLevel)" class="icon-container">
                     <img src="img/hunger_full.png" class="hunger-icon"></img>
@@ -33,6 +41,10 @@
                     <img src="img/hunger_empty.png" class="hunger-icon"></img>
                 </div>
             </td>
+
+            <!-- Player status -->
+            <td class="pixel-text-regular green-color text-center vertical-align-center" data-ng-show="player.online">Online</td>
+            <td class="pixel-text-regular text-center vertical-align-center" data-ng-show="!player.online">Offline</td>
         </tr>
     </tbody>
 </table>

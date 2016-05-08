@@ -1,0 +1,1 @@
+ALTER TABLE player ADD is_online BOOLEAN NOT NULL DEFAULT false;

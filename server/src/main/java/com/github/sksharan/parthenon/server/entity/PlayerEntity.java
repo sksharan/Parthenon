@@ -30,14 +30,18 @@ public class PlayerEntity {
     @Column(name = "food_level", nullable = false)
     private int foodLevel;
 
+    @Column(name = "is_online", nullable = false)
+    private boolean isOnline;
+
     protected PlayerEntity() {}
 
-    public PlayerEntity(String name, double health, double maxHealth, int expLevel, int foodLevel) {
+    public PlayerEntity(String name, double health, double maxHealth, int expLevel, int foodLevel, boolean isOnline) {
         this.name = name;
         this.health = health;
         this.maxHealth = maxHealth;
         this.expLevel = expLevel;
         this.foodLevel = foodLevel;
+        this.isOnline = isOnline;
     }
 
     public int getId() {
@@ -86,6 +90,14 @@ public class PlayerEntity {
 
     public void setFoodLevel(int foodLevel) {
         this.foodLevel = foodLevel;
+    }
+
+    public boolean isOnline() {
+        return isOnline;
+    }
+
+    public void setOnline(boolean isOnline) {
+        this.isOnline = isOnline;
     }
 
 }

@@ -13,6 +13,7 @@ public class ParthenonMapper {
         playerModel.setMaxHealth(player.getMaxHealth());
         playerModel.setExpLevel(player.getLevel());
         playerModel.setFoodLevel(player.getFoodLevel());
+        playerModel.setOnline(player.isOnline());
         return playerModel;
     }
 

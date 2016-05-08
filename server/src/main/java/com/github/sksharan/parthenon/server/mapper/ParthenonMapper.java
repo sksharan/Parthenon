@@ -25,7 +25,7 @@ public class ParthenonMapper {
         @Override
         protected PlayerEntity convert(PlayerModel playerModel) {
             return new PlayerEntity(playerModel.getName(), playerModel.getHealth(), playerModel.getMaxHealth(),
-                    playerModel.getExpLevel(), playerModel.getFoodLevel());
+                    playerModel.getExpLevel(), playerModel.getFoodLevel(), playerModel.isOnline());
         }
     };
 
@@ -33,7 +33,7 @@ public class ParthenonMapper {
         @Override
         protected PlayerModel convert(PlayerEntity playerEntity) {
             return new PlayerModel(playerEntity.getName(), playerEntity.getHealth(), playerEntity.getMaxHealth(),
-                    playerEntity.getExpLevel(), playerEntity.getFoodLevel());
+                    playerEntity.getExpLevel(), playerEntity.getFoodLevel(), playerEntity.isOnline());
         }
     };
 }

@@ -19,15 +19,19 @@ public class PlayerModel {
     @JsonProperty
     private int foodLevel;
 
+    @JsonProperty
+    private boolean isOnline;
+
     public PlayerModel() {
     }
 
-    public PlayerModel(String name, double health, double maxHealth, int expLevel, int foodLevel) {
+    public PlayerModel(String name, double health, double maxHealth, int expLevel, int foodLevel, boolean isOnline) {
         this.name = name;
         this.health = health;
         this.maxHealth = maxHealth;
         this.expLevel = expLevel;
         this.foodLevel = foodLevel;
+        this.isOnline = isOnline;
     }
 
     public String getName() {
@@ -68,6 +72,14 @@ public class PlayerModel {
 
     public void setFoodLevel(int foodLevel) {
         this.foodLevel = foodLevel;
+    }
+
+    public boolean isOnline() {
+        return isOnline;
+    }
+
+    public void setOnline(boolean isOnline) {
+        this.isOnline = isOnline;
     }
 
 }

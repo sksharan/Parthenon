@@ -1,8 +1,12 @@
+body {
+    background-image: url("../img/background.png");
+}
+
 .table-layout-fixed {
     table-layout: fixed;
 }
 
 /* Cancel Bootstrap's vertical-align: center on tables */
 .table > tbody > tr > td {
-     vertical-align: middle !important;
+    vertical-align: middle !important;
 }

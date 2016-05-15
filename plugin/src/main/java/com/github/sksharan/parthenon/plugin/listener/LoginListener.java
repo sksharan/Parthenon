@@ -33,10 +33,15 @@ public class LoginListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) throws IOException, URISyntaxException {
         PlayerModel playerModel = parthenonMapper.map(event.getPlayer());
-        HttpResponse response = networkUtils.sendPostRequestJson(PlayerUrl.savePlayerUrl(), playerModel);
+
+        HttpResponse response = networkUtils.sendPostRequestJson(
+                PlayerUrl.savePlayerUrl(parthenonPlugin.getServerBaseUrl()), playerModel);
+
         networkUtils.checkHttpResponse(parthenonPlugin, response,
                 "Successfully saved online player information for " + playerModel.getName(),
-                "Failed to save player information for " + playerModel.getName() + " with reason " + response.getStatusLine().getReasonPhrase());
+                "Failed to save player information for " + playerModel.getName() + " with reason "
+                        + response.getStatusLine().getReasonPhrase());
+
         EntityUtils.consume(response.getEntity());
     }
 }

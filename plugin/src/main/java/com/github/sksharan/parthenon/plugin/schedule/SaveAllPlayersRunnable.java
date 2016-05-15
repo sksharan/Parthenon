@@ -37,23 +37,31 @@ public class SaveAllPlayersRunnable implements Runnable {
             for (OfflinePlayer offlinePlayer: parthenonPlugin.getServer().getOfflinePlayers()) {
                 if (offlinePlayer.isOnline()) {
                     parthenonPlugin.getLogger().log(Level.INFO, offlinePlayer.getName() + " is currently online");
+
                     PlayerModel playerModel = parthenonMapper.map(offlinePlayer.getPlayer());
 
-                    HttpResponse response = networkUtils.sendPostRequestJson(PlayerUrl.savePlayerUrl(), playerModel);
+                    HttpResponse response = networkUtils.sendPostRequestJson(
+                            PlayerUrl.savePlayerUrl(parthenonPlugin.getServerBaseUrl()), playerModel);
+
                     networkUtils.checkHttpResponse(parthenonPlugin, response,
                             "Successfully saved online player information for " + playerModel.getName(),
-                            "Failed to save player information for " + playerModel.getName() + " with reason " + response.getStatusLine().getReasonPhrase());
+                            "Failed to save player information for " + playerModel.getName() + " with reason "
+                                    + response.getStatusLine().getReasonPhrase());
+
                     EntityUtils.consume(response.getEntity());
 
                 } else {
                     parthenonPlugin.getLogger().log(Level.INFO, offlinePlayer.getName() + " is currently offline");
+
                     HttpResponse response = networkUtils.sendPostRequestFormUrlEncoded(
-                            PlayerUrl.updatePlayerOnlineUrl(offlinePlayer.getName()),
+                            PlayerUrl.updatePlayerOnlineUrl(parthenonPlugin.getServerBaseUrl(), offlinePlayer.getName()),
                             new BasicNameValuePair("isOnline", Boolean.FALSE.toString()));
 
                     networkUtils.checkHttpResponse(parthenonPlugin, response,
                             "Successfully saved offline player information for " + offlinePlayer.getName(),
-                            "Failed to save player information for " + offlinePlayer.getName() + " with reason " + response.getStatusLine().getReasonPhrase());
+                            "Failed to save player information for " + offlinePlayer.getName() + " with reason "
+                                    + response.getStatusLine().getReasonPhrase());
+
                     EntityUtils.consume(response.getEntity());
                 }
             }

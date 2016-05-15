@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.sksharan.parthenon.common.model.PlayerModel;
-import com.github.sksharan.parthenon.common.url.ParthenonUrl;
+import com.github.sksharan.parthenon.common.url.PlayerUrl;
 import com.github.sksharan.parthenon.server.service.PlayerService;
 
 @Controller
-@RequestMapping(value = ParthenonUrl.PLAYER)
+@RequestMapping(value = PlayerUrl.URL)
 public class PlayerController {
     private PlayerService playerService;
 

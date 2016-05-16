@@ -11,6 +11,11 @@ define(['js/ParthenonApp', 'js/filter/RangeFilter', 'js/service/PlayerService'],
             });
         })();
 
+        /** Returns true if the player has no health reamining */
+        $scope.isDead = function(health) {
+            return Math.floor(health) === 0;
+        };
+
         /** Returns the number of full heart icons used to represent the player's health. */
         $scope.numFullHeartIcons = function(health) {
             return Math.floor(health/2);

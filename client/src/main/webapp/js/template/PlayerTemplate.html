@@ -11,7 +11,8 @@
     <tbody>
         <tr data-ng-repeat="player in players">
             <!-- Player name  -->
-            <td class="pixel-text-regular text-center vertical-align-center">{{player.name}}</td>
+            <td class="pixel-text-regular text-center vertical-align-center" data-ng-show="!isDead(player.health)">{{player.name}}</td>
+            <td class="pixel-text-regular red-color text-center vertical-align-center" data-ng-show="isDead(player.health)">{{player.name}}</td>
 
             <!-- Player health -->
             <td class="text-center vertical-align-center">
@@ -31,14 +32,14 @@
 
             <!-- Player food -->
             <td class="text-center vertical-align-center">
-                <div data-ng-repeat="i in [] | range:numFullHungerIcons(player.foodLevel)" class="icon-container">
-                    <img src="img/hunger_full.png" class="hunger-icon"></img>
+                <div data-ng-repeat="i in [] | range:numEmptyHungerIcons(player.foodLevel)" class="icon-container">
+                    <img src="img/hunger_empty.png" class="hunger-icon"></img>
                 </div>
                 <div data-ng-repeat="i in [] | range:numHalfHungerIcons(player.foodLevel)" class="icon-container">
                     <img src="img/hunger_half.png" class="hunger-icon"></img>
                 </div>
-                <div data-ng-repeat="i in [] | range:numEmptyHungerIcons(player.foodLevel)" class="icon-container">
-                    <img src="img/hunger_empty.png" class="hunger-icon"></img>
+                <div data-ng-repeat="i in [] | range:numFullHungerIcons(player.foodLevel)" class="icon-container">
+                    <img src="img/hunger_full.png" class="hunger-icon"></img>
                 </div>
             </td>
 

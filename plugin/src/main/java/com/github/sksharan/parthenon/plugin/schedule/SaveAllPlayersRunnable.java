@@ -2,6 +2,7 @@ package com.github.sksharan.parthenon.plugin.schedule;
 
 import java.util.logging.Level;
 
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
@@ -66,7 +67,7 @@ public class SaveAllPlayersRunnable implements Runnable {
                 }
             }
         } catch (Exception e) {
-            parthenonPlugin.getLogger().log(Level.SEVERE, e.getMessage());
+            parthenonPlugin.getLogger().log(Level.SEVERE, ExceptionUtils.getStackTrace(e));
         }
     }
 

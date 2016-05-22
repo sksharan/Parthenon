@@ -16,7 +16,6 @@ import com.github.sksharan.parthenon.plugin.guice.JacksonModule;
 import com.github.sksharan.parthenon.plugin.guice.ListenerModule;
 import com.github.sksharan.parthenon.plugin.guice.NetworkModule;
 import com.github.sksharan.parthenon.plugin.guice.ScheduleModule;
-import com.github.sksharan.parthenon.plugin.listener.LoginListenerFactory;
 import com.github.sksharan.parthenon.plugin.schedule.SaveAllPlayersRunnableFactory;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -56,8 +55,6 @@ public class ParthenonPlugin extends JavaPlugin {
     }
 
     private void initializeListeners() {
-        getServer().getPluginManager().registerEvents(
-                injector.getInstance(LoginListenerFactory.class).create(this), this);
     }
 
     private void initializeScheduler() {

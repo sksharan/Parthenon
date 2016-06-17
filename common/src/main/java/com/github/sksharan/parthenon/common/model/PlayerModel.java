@@ -1,5 +1,7 @@
 package com.github.sksharan.parthenon.common.model;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class PlayerModel {
@@ -22,16 +24,20 @@ public class PlayerModel {
     @JsonProperty
     private boolean isOnline;
 
-    public PlayerModel() {
-    }
+    @JsonProperty
+    private List<ItemStackModel> items;
 
-    public PlayerModel(String name, double health, double maxHealth, int expLevel, int foodLevel, boolean isOnline) {
+    public PlayerModel() { }
+
+    public PlayerModel(String name, double health, double maxHealth, int expLevel, int foodLevel,
+            boolean isOnline, List<ItemStackModel> items) {
         this.name = name;
         this.health = health;
         this.maxHealth = maxHealth;
         this.expLevel = expLevel;
         this.foodLevel = foodLevel;
         this.isOnline = isOnline;
+        this.items = items;
     }
 
     public String getName() {
@@ -80,6 +86,14 @@ public class PlayerModel {
 
     public void setOnline(boolean isOnline) {
         this.isOnline = isOnline;
+    }
+
+    public List<ItemStackModel> getItems() {
+        return items;
+    }
+
+    public void setItems(List<ItemStackModel> items) {
+        this.items = items;
     }
 
 }

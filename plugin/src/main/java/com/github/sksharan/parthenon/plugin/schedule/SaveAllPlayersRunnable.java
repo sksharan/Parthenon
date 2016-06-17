@@ -1,13 +1,14 @@
 package com.github.sksharan.parthenon.plugin.schedule;
 
+import java.util.ArrayList;
 import java.util.logging.Level;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.apache.http.HttpResponse;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
+import org.apache.http.HttpStatus;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.bukkit.OfflinePlayer;
 
+import com.github.sksharan.parthenon.common.model.ItemStackModel;
 import com.github.sksharan.parthenon.common.model.PlayerModel;
 import com.github.sksharan.parthenon.common.url.PlayerUrl;
 import com.github.sksharan.parthenon.plugin.ParthenonPlugin;
@@ -16,9 +17,7 @@ import com.github.sksharan.parthenon.plugin.network.NetworkUtils;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 
-/** Runnable for periodically saving the player information of every player
- *  who has ever played on the server. This is useful for determining if players
- *  are offline or online. */
+/** Periodically updates the data for all players who have ever joined the server. */
 public class SaveAllPlayersRunnable implements Runnable {
     private final ParthenonPlugin parthenonPlugin;
     private final NetworkUtils networkUtils;
@@ -36,34 +35,20 @@ public class SaveAllPlayersRunnable implements Runnable {
     public void run() {
         try {
             for (OfflinePlayer offlinePlayer: parthenonPlugin.getServer().getOfflinePlayers()) {
+                PlayerModel playerModel;
                 if (offlinePlayer.isOnline()) {
                     parthenonPlugin.getLogger().log(Level.INFO, offlinePlayer.getName() + " is currently online");
-
-                    PlayerModel playerModel = parthenonMapper.map(offlinePlayer.getPlayer());
-
-                    HttpResponse response = networkUtils.sendPostRequestJson(
-                            PlayerUrl.savePlayerUrl(parthenonPlugin.getServerBaseUrl()), playerModel);
-
-                    networkUtils.checkHttpResponse(parthenonPlugin, response,
-                            "Successfully saved online player information for " + playerModel.getName(),
-                            "Failed to save player information for " + playerModel.getName() + " with reason "
-                                    + response.getStatusLine().getReasonPhrase());
-
-                    EntityUtils.consume(response.getEntity());
-
+                    playerModel = parthenonMapper.map(offlinePlayer.getPlayer());
                 } else {
                     parthenonPlugin.getLogger().log(Level.INFO, offlinePlayer.getName() + " is currently offline");
+                    playerModel = new PlayerModel(offlinePlayer.getName(), 0, 20, 0, 0, false, new ArrayList<ItemStackModel>());
+                }
 
-                    HttpResponse response = networkUtils.sendPostRequestFormUrlEncoded(
-                            PlayerUrl.updatePlayerOnlineUrl(parthenonPlugin.getServerBaseUrl(), offlinePlayer.getName()),
-                            new BasicNameValuePair("isOnline", Boolean.FALSE.toString()));
-
-                    networkUtils.checkHttpResponse(parthenonPlugin, response,
-                            "Successfully saved offline player information for " + offlinePlayer.getName(),
-                            "Failed to save player information for " + offlinePlayer.getName() + " with reason "
-                                    + response.getStatusLine().getReasonPhrase());
-
-                    EntityUtils.consume(response.getEntity());
+                String url = PlayerUrl.savePlayerUrl(parthenonPlugin.getServerBaseUrl());
+                try (CloseableHttpResponse response = networkUtils.sendPostRequestJson(url, playerModel)) {
+                    if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+                        parthenonPlugin.getLogger().log(Level.INFO, "Successfully saved info for " + playerModel.getName());
+                    }
                 }
             }
         } catch (Exception e) {

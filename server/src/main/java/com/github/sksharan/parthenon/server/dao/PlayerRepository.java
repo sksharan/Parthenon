@@ -9,5 +9,6 @@ import com.github.sksharan.parthenon.server.entity.PlayerEntity;
 public interface PlayerRepository extends CrudRepository<PlayerEntity, Long> {
 
     public PlayerEntity findByName(String name);
+    public void deleteByName(String name);
 
 }

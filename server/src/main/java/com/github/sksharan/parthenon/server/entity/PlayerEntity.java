@@ -1,47 +1,63 @@
 package com.github.sksharan.parthenon.server.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "player")
 public class PlayerEntity {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", unique = true, nullable = false)
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "name", unique = true, nullable = false)
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "health", nullable = false)
+    @Column(name = "health")
     private double health;
 
-    @Column(name = "max_health", nullable = false)
+    @Column(name = "max_health")
     private double maxHealth;
 
-    @Column(name = "exp_level", nullable = false)
+    @Column(name = "exp_level")
     private int expLevel;
 
-    @Column(name = "food_level", nullable = false)
+    @Column(name = "food_level")
     private int foodLevel;
 
-    @Column(name = "is_online", nullable = false)
+    @Column(name = "is_online")
     private boolean isOnline;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "player_item_stack",
+            joinColumns = @JoinColumn(name = "player_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "item_stack_id", referencedColumnName = "id"))
+    private List<ItemStackEntity> items;
 
     protected PlayerEntity() {}
 
-    public PlayerEntity(String name, double health, double maxHealth, int expLevel, int foodLevel, boolean isOnline) {
+    public PlayerEntity(String name, double health, double maxHealth, int expLevel, int foodLevel,
+            boolean isOnline, List<ItemStackEntity> items) {
         this.name = name;
         this.health = health;
         this.maxHealth = maxHealth;
         this.expLevel = expLevel;
         this.foodLevel = foodLevel;
         this.isOnline = isOnline;
+        this.items = items;
     }
 
     public int getId() {
@@ -98,6 +114,14 @@ public class PlayerEntity {
 
     public void setOnline(boolean isOnline) {
         this.isOnline = isOnline;
+    }
+
+    public List<ItemStackEntity> getItems() {
+        return items;
+    }
+
+    public void setItems(List<ItemStackEntity> items) {
+        this.items = items;
     }
 
 }

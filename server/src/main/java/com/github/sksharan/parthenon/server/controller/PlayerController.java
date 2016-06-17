@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.sksharan.parthenon.common.model.PlayerModel;
 import com.github.sksharan.parthenon.common.url.PlayerUrl;
@@ -32,7 +31,7 @@ public class PlayerController {
         if (!playerService.playerExists(playerName)) {
             return ResponseEntity.badRequest().body(null);
         }
-        return ResponseEntity.ok(playerService.getPlayer(playerName));
+        return ResponseEntity.ok(playerService.getPlayerByName(playerName));
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -47,11 +46,4 @@ public class PlayerController {
         return ResponseEntity.ok().body(playerModel);
     }
 
-    @RequestMapping(value = "/{playerName}/online", method = RequestMethod.POST,
-            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<PlayerModel> updatePlayerOnline(@PathVariable String playerName,
-            @RequestParam("isOnline") boolean isOnline) {
-        playerService.updatePlayerOnline(playerName, isOnline);
-        return ResponseEntity.ok().body(playerService.getPlayer(playerName));
-    }
 }

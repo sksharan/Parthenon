@@ -15,6 +15,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import com.github.sksharan.parthenon.common.model.ItemStackModel;
 import com.github.sksharan.parthenon.common.model.PlayerModel;
 import com.github.sksharan.parthenon.server.controller.PlayerController;
+import com.github.sksharan.parthenon.server.dao.ItemStackRepository;
 import com.github.sksharan.parthenon.server.dao.PlayerRepository;
 import com.github.sksharan.parthenon.server.entity.ItemStackEntity;
 import com.github.sksharan.parthenon.server.entity.PlayerEntity;
@@ -22,6 +23,7 @@ import com.github.sksharan.parthenon.server.entity.PlayerEntity;
 public class PlayerControllerTest extends ParthenonIntegrationTest {
     @Autowired private PlayerController playerController;
     @Autowired private PlayerRepository playerRepository;
+    @Autowired private ItemStackRepository itemStackRepository;
     private static final double DELTA = 0.05;
 
     @Test
@@ -33,11 +35,16 @@ public class PlayerControllerTest extends ParthenonIntegrationTest {
 
         assertEquals(1, playerRepository.count());
         checkEquals(pm1, playerRepository.findByName("Player1"));
+        assertEquals(0, itemStackRepository.count());
 
         List<ItemStackModel> i2 = new ArrayList<ItemStackModel>();
         i2.add(new ItemStackModel("COBBLESTONE", 61, ItemStackModel.Type.GENERAL));
         PlayerModel pm2 = new PlayerModel("Player2", 0, 9, 3, 20, false, i2);
         playerController.savePlayer(pm2);
+
+        assertEquals(2, playerRepository.count());
+        checkEquals(pm2, playerRepository.findByName("Player2"));
+        assertEquals(1, itemStackRepository.count());
 
         List<ItemStackModel> i3 = new ArrayList<ItemStackModel>();
         i3.add(new ItemStackModel("DIAMOND_HELMET", 32, ItemStackModel.Type.EQUIPPED_HELMET));
@@ -47,23 +54,36 @@ public class PlayerControllerTest extends ParthenonIntegrationTest {
 
         assertEquals(2, playerRepository.count());
         checkEquals(pm3, playerRepository.findByName("Player1"));
-        checkEquals(pm2, playerRepository.findByName("Player2"));
+        assertEquals(3, itemStackRepository.count());
+
+        List<ItemStackModel> i4 = new ArrayList<ItemStackModel>();
+        i3.add(new ItemStackModel("DIAMOND_HELMET", 32, ItemStackModel.Type.EQUIPPED_HELMET));
+        PlayerModel pm4 = new PlayerModel("Player1", 4, 15, 32, 19, true, i4);
+        playerController.savePlayer(pm4);
+
+        assertEquals(2, playerRepository.count());
+        checkEquals(pm4, playerRepository.findByName("Player1"));
+        assertEquals(3, itemStackRepository.count());
     }
 
     @Test
     @DirtiesContext
     public void testGetPlayers() {
-        assertEquals(0, playerController.getAllPlayers().getBody().size());
-
         List<ItemStackEntity> i1 = new ArrayList<ItemStackEntity>();
         PlayerEntity pe1 = new PlayerEntity("Player1", 13, 20, 0, 12, true, i1);
         playerRepository.save(pe1);
+
+        assertEquals(1, playerRepository.count());
+        checkEquals(playerController.getPlayer("Player1").getBody(), pe1);
 
         List<ItemStackEntity> i2 = new ArrayList<ItemStackEntity>();
         i2.add(new ItemStackEntity("DIAMOND_HELMET", 12, ItemStackModel.Type.EQUIPPED_HELMET.name()));
         i2.add(new ItemStackEntity("WOOD", 47, ItemStackModel.Type.GENERAL.name()));
         PlayerEntity pe2 = new PlayerEntity("Player2", 4, 20, 14, 30, true, i2);
         playerRepository.save(pe2);
+
+        assertEquals(2, playerRepository.count());
+        checkEquals(playerController.getPlayer("Player2").getBody(), pe2);
 
         List<ItemStackEntity> i3 = new ArrayList<ItemStackEntity>();
         i3.add(new ItemStackEntity("COBBLESTONE", 12, ItemStackModel.Type.GENERAL.name()));
@@ -73,7 +93,6 @@ public class PlayerControllerTest extends ParthenonIntegrationTest {
 
         assertEquals(2, playerRepository.count());
         checkEquals(playerController.getPlayer("Player1").getBody(), pe3);
-        checkEquals(playerController.getPlayer("Player2").getBody(), pe2);
 
         List<PlayerModel> players = playerController.getAllPlayers().getBody().stream()
                 .sorted((p1, p2) -> p1.getName().compareTo(p2.getName()))

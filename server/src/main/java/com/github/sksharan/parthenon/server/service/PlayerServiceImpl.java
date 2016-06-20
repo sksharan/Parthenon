@@ -10,19 +10,24 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.sksharan.parthenon.common.model.PlayerModel;
+import com.github.sksharan.parthenon.server.dao.ItemStackRepository;
 import com.github.sksharan.parthenon.server.dao.PlayerRepository;
+import com.github.sksharan.parthenon.server.entity.ItemStackEntity;
 import com.github.sksharan.parthenon.server.entity.PlayerEntity;
 import com.github.sksharan.parthenon.server.exception.PlayerServiceException;
 
 @Service
 public class PlayerServiceImpl implements PlayerService {
-    private ModelMapper modelMapper;
-    private PlayerRepository playerRepository;
+    private final ModelMapper modelMapper;
+    private final PlayerRepository playerRepository;
+    private final ItemStackRepository itemStackRepository;
 
     @Autowired
-    public PlayerServiceImpl(ModelMapper modelMapper, PlayerRepository playerRepository) {
+    public PlayerServiceImpl(ModelMapper modelMapper, PlayerRepository playerRepository,
+            ItemStackRepository itemStackRepository) {
         this.modelMapper = modelMapper;
         this.playerRepository = playerRepository;
+        this.itemStackRepository = itemStackRepository;
     }
 
     @Override
@@ -54,11 +59,28 @@ public class PlayerServiceImpl implements PlayerService {
     @Transactional
     public void savePlayer(PlayerModel playerModel) {
         PlayerEntity playerEntity = modelMapper.map(playerModel, PlayerEntity.class);
-        PlayerEntity existingPlayerEntity = playerRepository.findByName(playerModel.getName());
-        if (existingPlayerEntity != null) {
-            playerEntity.setId(existingPlayerEntity.getId());
+        setPlayerEntityId(playerEntity);
+        for (ItemStackEntity itemStackEntity: playerEntity.getItems()) {
+            setItemStackEntityId(itemStackEntity);
         }
         playerRepository.save(playerEntity);
+    }
+
+    private void setPlayerEntityId(PlayerEntity entity) {
+        PlayerEntity existingEntity = playerRepository.findByName(entity.getName());
+        if (existingEntity != null) {
+            entity.setId(existingEntity.getId());
+        }
+    }
+
+    private void setItemStackEntityId(ItemStackEntity entity) {
+        String name = entity.getName();
+        int amount = entity.getAmount();
+        String type = entity.getType();
+        ItemStackEntity existingEntity = itemStackRepository.findByNameAndAmountAndType(name, amount, type);
+        if (existingEntity != null) {
+            entity.setId(existingEntity.getId());
+        }
     }
 
 }

@@ -11,3 +11,1047 @@
     height: 23px;
     width: 23px;
 }
+
+.inventory-icon {
+    background-color: transparent;
+    background-image: url("../img/inventory.png");
+    background-repeat: no-repeat;
+    border: none;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+}
+
+/* Use ../WEB-INF/scrips/inventory_icon.lua to auto-generate inventory-icon css */
+.inventory-icon-VINE {
+    background-position: -544px -1056px;
+}
+.inventory-icon-SLIME_BLOCK {
+    background-position: -736px -896px;
+}
+.inventory-icon-GRASS {
+    background-position: -640px -960px;
+}
+.inventory-icon-DIAMOND_SWORD {
+    background-position: -192px -1280px;
+}
+.inventory-icon-MINECART {
+    background-position: -352px -1248px;
+}
+.inventory-icon-ACACIA_DOOR_ITEM {
+    background-position: -192px -928px;
+}
+.inventory-icon-BOAT_DARK_OAK {
+    background-position: -352px -1344px;
+}
+.inventory-icon-GLOWSTONE_DUST {
+    background-position: -128px -1120px;
+}
+.inventory-icon-NETHER_BRICK_STAIRS {
+    background-position: -384px -992px;
+}
+.inventory-icon-DETECTOR_RAIL {
+    background-position: -352px -928px;
+}
+.inventory-icon-COOKED_MUTTON {
+    background-position: -864px -800px;
+}
+.inventory-icon-CHAINMAIL_LEGGINGS {
+    background-position: -128px -0px;
+}
+.inventory-icon-BREWING_STAND_ITEM {
+    background-position: -608px -1216px;
+}
+.inventory-icon-SANDSTONE_STAIRS {
+    background-position: -704px -896px;
+}
+.inventory-icon-BREAD {
+    background-position: -704px -800px;
+}
+.inventory-icon-FEATHER {
+    background-position: -64px -1120px;
+}
+.inventory-icon-LEATHER {
+    background-position: -256px -1120px;
+}
+.inventory-icon-DIRT {
+    background-position: -576px -960px;
+}
+.inventory-icon-DIAMOND_AXE {
+    background-position: -448px -1184px;
+}
+.inventory-icon-HOPPER_MINECART {
+    background-position: -480px -1248px;
+}
+.inventory-icon-QUARTZ_BLOCK {
+    background-position: -64px -864px;
+}
+.inventory-icon-ROTTEN_FLESH {
+    background-position: -448px -832px;
+}
+.inventory-icon-GOLD_BLOCK {
+    background-position: -0px -864px;
+}
+.inventory-icon-EXPLOSIVE_MINECART {
+    background-position: -512px -1248px;
+}
+.inventory-icon-PUMPKIN {
+    background-position: -96px -1056px;
+}
+.inventory-icon-ACACIA_FENCE_GATE {
+    background-position: -640px -832px;
+}
+.inventory-icon-WOOD_AXE {
+    background-position: -320px -1216px;
+}
+.inventory-icon-MOSSY_COBBLESTONE {
+    background-position: -800px -960px;
+}
+.inventory-icon-PORK {
+    background-position: -352px -832px;
+}
+.inventory-icon-EMERALD_ORE {
+    background-position: -736px -992px;
+}
+.inventory-icon-DIAMOND_ORE {
+    background-position: -704px -992px;
+}
+.inventory-icon-LEATHER_LEGGINGS {
+    background-position: -320px -32px;
+}
+.inventory-icon-CAULDRON_ITEM {
+    background-position: -672px -1216px;
+}
+.inventory-icon-HAY_BLOCK {
+    background-position: -832px -864px;
+}
+.inventory-icon-WATER_LILY {
+    background-position: -736px -1024px;
+}
+.inventory-icon-ARMOR_STAND {
+    background-position: -32px -672px;
+}
+.inventory-icon-COOKED_CHICKEN {
+    background-position: -800px -800px;
+}
+.inventory-icon-IRON_BLOCK {
+    background-position: -32px -864px;
+}
+.inventory-icon-LEATHER_CHESTPLATE {
+    background-position: -352px -32px;
+}
+.inventory-icon-IRON_SPADE {
+    background-position: -0px -1216px;
+}
+.inventory-icon-COOKED_RABBIT {
+    background-position: -928px -800px;
+}
+.inventory-icon-COAL {
+    background-position: -960px -1088px;
+}
+.inventory-icon-RAW_CHICKEN {
+    background-position: -256px -832px;
+}
+.inventory-icon-DIAMOND_BOOTS {
+    background-position: -800px -0px;
+}
+.inventory-icon-ICE {
+    background-position: -736px -960px;
+}
+.inventory-icon-BOAT_BIRCH {
+    background-position: -256px -1344px;
+}
+.inventory-icon-COMPASS {
+    background-position: -672px -1152px;
+}
+.inventory-icon-BOAT {
+    background-position: -192px -1344px;
+}
+.inventory-icon-DARK_OAK_DOOR_ITEM {
+    background-position: -320px -928px;
+}
+.inventory-icon-DISPENSER {
+    background-position: -832px -1216px;
+}
+.inventory-icon-MAP {
+    background-position: -64px -1216px;
+}
+.inventory-icon-CLAY {
+    background-position: -384px -960px;
+}
+.inventory-icon-INK_SACK {
+    background-position: -672px -672px;
+}
+.inventory-icon-IRON_SWORD {
+    background-position: -256px -1280px;
+}
+.inventory-icon-PURPUR_SLAB {
+    background-position: -480px -896px;
+}
+.inventory-icon-COMMAND {
+    background-position: -736px -1216px;
+}
+.inventory-icon-REDSTONE_TORCH {
+    background-position: -768px -928px;
+}
+.inventory-icon-IRON_INGOT {
+    background-position: -224px -1120px;
+}
+.inventory-icon-GOLD_HOE {
+    background-position: -832px -1184px;
+}
+.inventory-icon-LEVER {
+    background-position: -480px -928px;
+}
+.inventory-icon-ACACIA_FENCE {
+    background-position: -608px -832px;
+}
+.inventory-icon-SPECTRAL_ARROW {
+    background-position: -320px -1280px;
+}
+.inventory-icon-DROPPER {
+    background-position: -864px -1216px;
+}
+.inventory-icon-BROWN_MUSHROOM {
+    background-position: -160px -1024px;
+}
+.inventory-icon-NETHER_WART_BLOCK {
+    background-position: -672px -1344px;
+}
+.inventory-icon-LEATHER_BOOTS {
+    background-position: -256px -32px;
+}
+.inventory-icon-BOOK {
+    background-position: -832px -1088px;
+}
+.inventory-icon-BOAT {
+    background-position: -320px -1248px;
+}
+.inventory-icon-CHAINMAIL_BOOTS {
+    background-position: -32px -0px;
+}
+.inventory-icon-EXP_BOTTLE {
+    background-position: -320px -1088px;
+}
+.inventory-icon-FLINT_AND_STEEL {
+    background-position: -736px -1184px;
+}
+.inventory-icon-ENCHANTED_BOOK {
+    background-position: -608px -1184px;
+}
+.inventory-icon-STEP {
+    background-position: -256px -896px;
+}
+.inventory-icon-SAND {
+    background-position: -96px -992px;
+}
+.inventory-icon-TRAPPED_CHEST {
+    background-position: -224px -1248px;
+}
+.inventory-icon-COAL_BLOCK {
+    background-position: -928px -832px;
+}
+.inventory-icon-HUGE_MUSHROOM_1 {
+    background-position: -192px -1024px;
+}
+.inventory-icon-OBSIDIAN {
+    background-position: -896px -960px;
+}
+.inventory-icon-BOOK_AND_QUILL {
+    background-position: -544px -1152px;
+}
+.inventory-icon-GOLD_LEGGINGS {
+    background-position: -64px -32px;
+}
+.inventory-icon-GOLD_LEGGINGS {
+    background-position: -64px -32px;
+}
+.inventory-icon-COOKIE {
+    background-position: -992px -800px;
+}
+.inventory-icon-DRAGON_EGG {
+    background-position: -992px -768px;
+}
+.inventory-icon-GRAVEL {
+    background-position: -672px -960px;
+}
+.inventory-icon-LAPIS_BLOCK {
+    background-position: -96px -896px;
+}
+.inventory-icon-GOLD_HOE {
+    background-position: -832px -1184px;
+}
+.inventory-icon-RABBIT {
+    background-position: -384px -832px;
+}
+.inventory-icon-IRON_HELMET {
+    background-position: -160px -32px;
+}
+.inventory-icon-END_ROD {
+    background-position: -32px -800px;
+}
+.inventory-icon-GOLD_PICKAXE {
+    background-position: -864px -1184px;
+}
+.inventory-icon-DEAD_BUSH {
+    background-position: -448px -1024px;
+}
+.inventory-icon-NETHER_BRICK_ITEM {
+    background-position: -288px -1120px;
+}
+.inventory-icon-GOLD_ORE {
+    background-position: -768px -992px;
+}
+.inventory-icon-PUMPKIN_SEEDS {
+    background-position: -128px -1056px;
+}
+.inventory-icon-BEETROOT_SOUP {
+    background-position: -672px -1056px;
+}
+.inventory-icon-CACTUS {
+    background-position: -224px -1024px;
+}
+.inventory-icon-LEATHER_HELMET {
+    background-position: -288px -32px;
+}
+.inventory-icon-STONE_SLAB2 {
+    background-position: -160px -928px;
+}
+.inventory-icon-COMMAND_MINECART {
+    background-position: -416px -1248px;
+}
+.inventory-icon-GRILLED_PORK {
+    background-position: -896px -800px;
+}
+.inventory-icon-WOOD_SWORD {
+    background-position: -384px -1280px;
+}
+.inventory-icon-DIAMOND_HOE {
+    background-position: -480px -1184px;
+}
+.inventory-icon-GLOWSTONE {
+    background-position: -288px -992px;
+}
+.inventory-icon-PURPUR_STAIRS {
+    background-position: -512px -896px;
+}
+.inventory-icon-BIRCH_WOOD_STAIRS {
+    background-position: -896px -832px;
+}
+.inventory-icon-NAME_TAG {
+    background-position: -96px -1216px;
+}
+.inventory-icon-BRICK_STAIRS {
+    background-position: -128px -864px;
+}
+.inventory-icon-POTATO_ITEM {
+    background-position: -768px -640px;
+}
+.inventory-icon-EGG {
+    background-position: -0px -832px;
+}
+.inventory-icon-JUNGLE_FENCE {
+    background-position: -928px -864px;
+}
+.inventory-icon-WATER_BUCKET {
+    background-position: -960px -640px;
+}
+.inventory-icon-CHAINMAIL_CHESTPLATE {
+    background-position: -64px -0px;
+}
+.inventory-icon-GLASS_BOTTLE {
+    background-position: -768px -1184px;
+}
+.inventory-icon-HUGE_MUSHROOM_2 {
+    background-position: -192px -1056px;
+}
+.inventory-icon-COBBLESTONE_STAIRS {
+    background-position: -384px -864px;
+}
+.inventory-icon-NOTE_BLOCK {
+    background-position: -96px -1248px;
+}
+.inventory-icon-TNT {
+    background-position: -192px -1248px;
+}
+.inventory-icon-IRON_TRAPDOOR {
+    background-position: -416px -928px;
+}
+.inventory-icon-PAINTING {
+    background-position: -320px -672px;
+}
+.inventory-icon-GHAST_TEAR {
+    background-position: -544px -640px;
+}
+.inventory-icon-BUCKET {
+    background-position: -864px -640px;
+}
+.inventory-icon-WOOD_HOE {
+    background-position: -352px -1216px;
+}
+.inventory-icon-BLAZE_ROD {
+    background-position: -448px -640px;
+}
+.inventory-icon-JUNGLE_FENCE_GATE {
+    background-position: -960px -864px;
+}
+.inventory-icon-IRON_HOE {
+    background-position: -960px -1184px;
+}
+.inventory-icon-CARPET {
+    background-position: -640px -768px;
+}
+.inventory-icon-REDSTONE_COMPARATOR {
+    background-position: -672px -928px;
+}
+.inventory-icon-PISTON_EXTENSION {
+    background-position: -576px -928px;
+}
+.inventory-icon-TORCH {
+    background-position: -640px -992px;
+}
+.inventory-icon-BIRCH_FENCE {
+    background-position: -768px -832px;
+}
+.inventory-icon-ARROW {
+    background-position: -576px -1248px;
+}
+.inventory-icon-LAVA_BUCKET {
+    background-position: -896px -640px;
+}
+.inventory-icon-BEACON {
+    background-position: -544px -1216px;
+}
+.inventory-icon-PAPER {
+    background-position: -384px -1120px;
+}
+.inventory-icon-CLAY_BRICK {
+    background-position: -864px -1088px;
+}
+.inventory-icon-FIREBALL {
+    background-position: -672px -1184px;
+}
+.inventory-icon-STONE_SWORD {
+    background-position: -352px -1280px;
+}
+.inventory-icon-CHEST {
+    background-position: -704px -1216px;
+}
+.inventory-icon-EYE_OF_ENDER {
+    background-position: -640px -1184px;
+}
+.inventory-icon-CAKE {
+    background-position: -640px -1216px;
+}
+.inventory-icon-WOOD_BUTTON {
+    background-position: -32px -960px;
+}
+.inventory-icon-MUSHROOM_SOUP {
+    background-position: -96px -832px;
+}
+.inventory-icon-IRON_BOOTS {
+    background-position: -96px -32px;
+}
+.inventory-icon-DARK_OAK_FENCE {
+    background-position: -448px -864px;
+}
+.inventory-icon-ACTIVATOR_RAIL {
+    background-position: -224px -928px;
+}
+.inventory-icon-BOAT_SPRUCE {
+    background-position: -224px -1344px;
+}
+.inventory-icon-COBBLESTONE {
+    background-position: -320px -864px;
+}
+.inventory-icon-DIAMOND_BLOCK {
+    background-position: -960px -832px;
+}
+.inventory-icon-SNOW {
+    background-position: -928px -896px;
+}
+.inventory-icon-ENDER_PORTAL {
+    background-position: -0px -800px;
+}
+.inventory-icon-FIREWORK_CHARGE {
+    background-position: -256px -800px;
+}
+.inventory-icon-DARK_OAK_FENCE_GATE {
+    background-position: -480px -864px;
+}
+.inventory-icon-GOLD_PICKAXE {
+    background-position: -864px -1184px;
+}
+.inventory-icon-GOLD_NUGGET {
+    background-position: -608px -640px;
+}
+.inventory-icon-GLASS {
+    background-position: -768px -864px;
+}
+.inventory-icon-RAILS {
+    background-position: -640px -928px;
+}
+.inventory-icon-WOOD_PLATE {
+    background-position: -64px -960px;
+}
+.inventory-icon-FURNACE {
+    background-position: -960px -1216px;
+}
+.inventory-icon-WOOD_PICKAXE {
+    background-position: -384px -1216px;
+}
+.inventory-icon-WOOD {
+    background-position: -928px -1024px;
+}
+.inventory-icon-CARROT_ITEM {
+    background-position: -480px -640px;
+}
+.inventory-icon-BIRCH_DOOR_ITEM {
+    background-position: -256px -928px;
+}
+.inventory-icon-COOKED_BEEF {
+    background-position: -480px -832px;
+}
+.inventory-icon-GOLD_BOOTS {
+    background-position: -960px -0px;
+}
+.inventory-icon-WATER {
+    background-position: -576px -832px;
+}
+.inventory-icon-RAILS {
+    background-position: -640px -928px;
+}
+.inventory-icon-TRIPWIRE_HOOK {
+    background-position: -960px -928px;
+}
+.inventory-icon-TIPPED_ARROW {
+    background-position: -544px -1248px;
+}
+.inventory-icon-SUGAR_CANE {
+    background-position: -480px -1056px;
+}
+.inventory-icon-SUGAR_CANE {
+    background-position: -480px -1056px;
+}
+.inventory-icon-BED {
+    background-position: -576px -1216px;
+}
+.inventory-icon-PISTON_BASE {
+    background-position: -544px -928px;
+}
+.inventory-icon-STRUCTURE_BLOCK {
+    background-position: -96px -1376px;
+}
+.inventory-icon-STRING {
+    background-position: -640px -1120px;
+}
+.inventory-icon-NETHERRACK {
+    background-position: -480px -992px;
+}
+.inventory-icon-STONE_SPADE {
+    background-position: -288px -1216px;
+}
+.inventory-icon-STONE_PLATE {
+    background-position: -896px -928px;
+}
+.inventory-icon-STONE_PICKAXE {
+    background-position: -256px -1216px;
+}
+.inventory-icon-STONE_HOE {
+    background-position: -224px -1216px;
+}
+.inventory-icon-IRON_PICKAXE {
+    background-position: -992px -1184px;
+}
+.inventory-icon-STONE_BUTTON {
+    background-position: -864px -928px;
+}
+.inventory-icon-STONE_AXE {
+    background-position: -192px -1216px;
+}
+.inventory-icon-PISTON_STICKY_BASE {
+    background-position: -832px -928px;
+}
+.inventory-icon-STICK {
+    background-position: -608px -1120px;
+}
+.inventory-icon-SPRUCE_WOOD_STAIRS {
+    background-position: -64px -928px;
+}
+.inventory-icon-FLINT {
+    background-position: -96px -1120px;
+}
+.inventory-icon-CHORUS_FLOWER {
+    background-position: -256px -1024px;
+}
+.inventory-icon-SPRUCE_DOOR_ITEM {
+    background-position: -800px -928px;
+}
+.inventory-icon-SPRUCE_FENCE_GATE {
+    background-position: -992px -896px;
+}
+.inventory-icon-SPONGE {
+    background-position: -160px -1248px;
+}
+.inventory-icon-SPRUCE_FENCE {
+    background-position: -960px -896px;
+}
+.inventory-icon-GOLD_AXE {
+    background-position: -800px -1184px;
+}
+.inventory-icon-GOLD_SPADE {
+    background-position: -896px -1184px;
+}
+.inventory-icon-REDSTONE_LAMP_ON {
+    background-position: -704px -928px;
+}
+.inventory-icon-SPIDER_EYE {
+    background-position: -832px -640px;
+}
+.inventory-icon-COBBLE_WALL {
+    background-position: -416px -864px;
+}
+.inventory-icon-DOUBLE_PLANT {
+    background-position: -480px -1024px;
+}
+.inventory-icon-CLAY_BALL {
+    background-position: -928px -1088px;
+}
+.inventory-icon-RABBIT_HIDE {
+    background-position: -512px -1120px;
+}
+.inventory-icon-LONG_GRASS {
+    background-position: -544px -1024px;
+}
+.inventory-icon-RABBIT_FOOT {
+    background-position: -800px -640px;
+}
+.inventory-icon-BANNER {
+    background-position: -608px -768px;
+}
+.inventory-icon-EMERALD_BLOCK {
+    background-position: -992px -832px;
+}
+.inventory-icon-JUKEBOX {
+    background-position: -32px -1248px;
+}
+.inventory-icon-COAL_BLOCK {
+    background-position: -448px -1280px;
+}
+.inventory-icon-PRISMARINE {
+    background-position: -0px -992px;
+}
+.inventory-icon-SOUL_SAND {
+    background-position: -512px -992px;
+}
+.inventory-icon-SNOW_BALL {
+    background-position: -288px -1280px;
+}
+.inventory-icon-HOPPER {
+    background-position: -992px -1216px;
+}
+.inventory-icon-SLIME_BALL {
+    background-position: -576px -1120px;
+}
+.inventory-icon-DAYLIGHT_SENSOR_INVERTED {
+    background-position: -0px -1248px;
+}
+.inventory-icon-SKULL_ITEM {
+    background-position: -192px -960px;
+}
+.inventory-icon-SIGN {
+    background-position: -608px -992px;
+}
+.inventory-icon-SHEARS {
+    background-position: -160px -1216px;
+}
+.inventory-icon-SEEDS {
+    background-position: -320px -1056px;
+}
+.inventory-icon-ENDER_PORTAL {
+    background-position: -544px -992px;
+}
+.inventory-icon-SADDLE {
+    background-position: -128px -1216px;
+}
+.inventory-icon-APPLE {
+    background-position: -672px -800px;
+}
+.inventory-icon-RED_ROSE {
+    background-position: -256px -1056px;
+}
+.inventory-icon-REDSTONE_TORCH_OFF {
+    background-position: -160px -1312px;
+}
+.inventory-icon-REDSTONE_ORE {
+    background-position: -864px -992px;
+}
+.inventory-icon-REDSTONE {
+    background-position: -544px -1120px;
+}
+.inventory-icon-FISHING_ROD {
+    background-position: -704px -1184px;
+}
+.inventory-icon-LEASH {
+    background-position: -32px -1216px;
+}
+.inventory-icon-CHROUS_FRUIT {
+    background-position: -736px -800px;
+}
+.inventory-icon-RED_SANDSTONE_STAIRS {
+    background-position: -640px -896px;
+}
+.inventory-icon-SHIELD {
+    background-position: -992px -960px;
+}
+.inventory-icon-RED_SANDSTONE {
+    background-position: -64px -992px;
+}
+.inventory-icon-RED_NETHER_BLOCK {
+    background-position: -704px -1344px;
+}
+.inventory-icon-WOOD_SPADE {
+    background-position: -416px -1216px;
+}
+.inventory-icon-BRICK {
+    background-position: -160px -864px;
+}
+.inventory-icon-REDSTONE {
+    background-position: -544px -1120px;
+}
+.inventory-icon-BOOKSHELF {
+    background-position: -96px -864px;
+}
+.inventory-icon-BEETROOT {
+    background-position: -608px -1056px;
+}
+.inventory-icon-BOWL {
+    background-position: -576px -1152px;
+}
+.inventory-icon-BONE {
+    background-position: -800px -1088px;
+}
+.inventory-icon-WRITTEN_BOOK {
+    background-position: -448px -1216px;
+}
+.inventory-icon-GOLD_INGOT {
+    background-position: -160px -1120px;
+}
+.inventory-icon-MUTTON {
+    background-position: -320px -832px;
+}
+.inventory-icon-RAW_BEEF {
+    background-position: -224px -832px;
+}
+.inventory-icon-FENCE_GATE {
+    background-position: -736px -864px;
+}
+.inventory-icon-MELON_BLOCK {
+    background-position: -768px -1024px;
+}
+.inventory-icon-FIREWORK {
+    background-position: -224px -800px;
+}
+.inventory-icon-ANVIL {
+    background-position: -480px -1216px;
+}
+.inventory-icon-SAPLING {
+    background-position: -896px -1024px;
+}
+.inventory-icon-DIAMOND_CHESTPLATE {
+    background-position: -832px -0px;
+}
+.inventory-icon-ENDER_STONE {
+    background-position: -64px -800px;
+}
+.inventory-icon-WEB {
+    background-position: -448px -960px;
+}
+.inventory-icon-RAW_FISH {
+    background-position: -288px -832px;
+}
+.inventory-icon-ENDER_CHEST {
+    background-position: -928px -1216px;
+}
+.inventory-icon-SANDSTONE {
+    background-position: -128px -992px;
+}
+.inventory-icon-PACKED_ICE {
+    background-position: -928px -960px;
+}
+.inventory-icon-PUMPKIN_PIE {
+    background-position: -160px -832px;
+}
+.inventory-icon-BOAT_ACACIA {
+    background-position: -320px -1344px;
+}
+.inventory-icon-PRISMARINE_CRYSTALS {
+    background-position: -448px -1120px;
+}
+.inventory-icon-POWERED_RAIL {
+    background-position: -608px -928px;
+}
+.inventory-icon-EMERALD {
+    background-position: -0px -1120px;
+}
+.inventory-icon-DIAMOND_HELMET {
+    background-position: -864px -0px;
+}
+.inventory-icon-DAYLIGHT_DETECTOR {
+    background-position: -800px -1216px;
+}
+.inventory-icon-CHORUS_FRUIT_POPPED {
+    background-position: -416px -1120px;
+}
+.inventory-icon-POISONOUS_POTATO {
+    background-position: -736px -640px;
+}
+.inventory-icon-PISTON_MOVING_PIECE {
+    background-position: -96px -1312px;
+}
+.inventory-icon-DIAMOND_PICKAXE {
+    background-position: -512px -1184px;
+}
+.inventory-icon-STRUCTURE_VOID {
+    background-position: -128px -1376px;
+}
+.inventory-icon-MELON {
+    background-position: -64px -832px;
+}
+.inventory-icon-PURPUR_PILLAR {
+    background-position: -448px -896px;
+}
+.inventory-icon-BARRIER {
+    background-position: -512px -1216px;
+}
+.inventory-icon-STONE {
+    background-position: -224px -992px;
+}
+.inventory-icon-NETHER_STAR {
+    background-position: -352px -1120px;
+}
+.inventory-icon-RED_MUSHROOM {
+    background-position: -160px -1056px;
+}
+.inventory-icon-CARROT_STICK {
+    background-position: -608px -1152px;
+}
+.inventory-icon-IRON_ORE {
+    background-position: -800px -992px;
+}
+.inventory-icon-BOW {
+    background-position: -992px -1248px;
+}
+.inventory-icon-NETHER_WARTS {
+    background-position: -704px -640px;
+}
+.inventory-icon-BIRCH_FENCE_GATE {
+    background-position: -800px -832px;
+}
+.inventory-icon-BEDROCK {
+    background-position: -320px -960px;
+}
+.inventory-icon-NETHER_FENCE {
+    background-position: -352px -992px;
+}
+.inventory-icon-WHEAT {
+    background-position: -544px -832px;
+}
+.inventory-icon-FERMENTED_SPIDER_EYE {
+    background-position: -512px -640px;
+}
+.inventory-icon-IRON_AXE {
+    background-position: -928px -1184px;
+}
+.inventory-icon-GOLD_BOOTS {
+    background-position: -960px -0px;
+}
+.inventory-icon-MYCEL {
+    background-position: -864px -960px;
+}
+.inventory-icon-PORTAL {
+    background-position: -576px -992px;
+}
+.inventory-icon-LADDER {
+    background-position: -64px -896px;
+}
+.inventory-icon-WORKBENCH {
+    background-position: -768px -1216px;
+}
+.inventory-icon-MILK_BUCKET {
+    background-position: -928px -640px;
+}
+.inventory-icon-MELON_SEEDS {
+    background-position: -800px -1024px;
+}
+.inventory-icon-MAGMA_CREAM {
+    background-position: -672px -640px;
+}
+.inventory-icon-PRISMARINE_SHARD {
+    background-position: -480px -1120px;
+}
+.inventory-icon-JUNGLE_DOOR_ITEM {
+    background-position: -448px -928px;
+}
+.inventory-icon-QUARTZ_STAIRS {
+    background-position: -576px -896px;
+}
+.inventory-icon-LAPIS_ORE {
+    background-position: -832px -992px;
+}
+.inventory-icon-CHARCOAL {
+    background-position: -896px -1088px;
+}
+.inventory-icon-GOLDEN_CARROT {
+    background-position: -640px -640px;
+}
+.inventory-icon-ACACIA_STAIRS {
+    background-position: -736px -832px;
+}
+.inventory-icon-EMPTY_MAP {
+    background-position: -576px -1184px;
+}
+.inventory-icon-REDSTONE_BLOCK {
+    background-position: -288px -928px;
+}
+.inventory-icon-MOB_SPAWNER {
+    background-position: -768px -960px;
+}
+.inventory-icon-NETHER_BRICK {
+    background-position: -320px -992px;
+}
+.inventory-icon-GOLD_CHESTPLATE {
+    background-position: -992px -0px;
+}
+.inventory-icon-FENCE {
+    background-position: -704px -864px;
+}
+.inventory-icon-LEAVES {
+    background-position: -864px -1024px;
+}
+.inventory-icon-BEETROOT_SEEDS {
+    background-position: -640px -1056px;
+}
+.inventory-icon-STOARGE_MINECART {
+    background-position: -384px -1248px;
+}
+.inventory-icon-IRON_LEGGINGS {
+    background-position: -224px -32px;
+}
+.inventory-icon-ENDER_PORTAL_FRAME {
+    background-position: -0px -800px;
+}
+.inventory-icon-DIAMOND_LEGGINGS {
+    background-position: -928px -0px;
+}
+.inventory-icon-IRON_DOOR_BLOCK {
+    background-position: -384px -928px;
+}
+.inventory-icon-IRON_CHESTPLATE {
+    background-position: -128px -32px;
+}
+.inventory-icon-GOLD_CHESTPLATE {
+    background-position: -992px -0px;
+}
+.inventory-icon-NETHER_WART_BLOCK {
+    background-position: -448px -992px;
+}
+.inventory-icon-SUGAR {
+    background-position: -512px -832px;
+}
+.inventory-icon-TRAP_DOOR {
+    background-position: -928px -928px;
+}
+.inventory-icon-CHAINMAIL_HELMET {
+    background-position: -96px -0px;
+}
+.inventory-icon-DIAMOND {
+    background-position: -992px -1088px;
+}
+.inventory-icon-PURPUR_BLOCK {
+    background-position: -416px -896px;
+}
+.inventory-icon-BAKED_POTATO {
+    background-position: -384px -640px;
+}
+.inventory-icon-GOLD_SWORD {
+    background-position: -224px -1280px;
+}
+.inventory-icon-GOLD_HELMET {
+    background-position: -0px -32px;
+}
+.inventory-icon-END_BRICKS {
+    background-position: -640px -864px;
+}
+.inventory-icon-GOLDEN_APPLE {
+    background-position: -32px -832px;
+}
+.inventory-icon-GOLD_SWORD {
+    background-position: -224px -1280px;
+}
+.inventory-icon-GOLD_SPADE {
+    background-position: -896px -1184px;
+}
+.inventory-icon-GOLD_HELMET {
+    background-position: -0px -32px;
+}
+.inventory-icon-GOLD_AXE {
+    background-position: -800px -1184px;
+}
+.inventory-icon-SPECKLED_MELON {
+    background-position: -576px -640px;
+}
+.inventory-icon-FROSTED_ICE {
+    background-position: -736px -960px;
+}
+.inventory-icon-FLOWER_POT_ITEM {
+    background-position: -192px -672px;
+}
+.inventory-icon-RABBIT_STEW {
+    background-position: -192px -832px;
+}
+.inventory-icon-ENDER_PEARL {
+    background-position: -32px -1120px;
+}
+.inventory-icon-JACK_O_LANTERN {
+    background-position: -896px -864px;
+}
+.inventory-icon-END_CRYSTAL {
+    background-position: -448px -1344px;
+}
+.inventory-icon-ENCHANTMENT_TABLE {
+    background-position: -896px -1216px;
+}
+.inventory-icon-ELYTRA {
+    background-position: -384px -1344px;
+}
+.inventory-icon-DRAGONS_BREATH {
+    background-position: -864px -1056px;
+}
+.inventory-icon-DIAMOND_SPADE {
+    background-position: -544px -1184px;
+}
+.inventory-icon-DARK_OAK_STAIRS {
+    background-position: -576px -864px;
+}
+.inventory-icon-COOKED_FISH {
+    background-position: -832px -800px;
+}
+.inventory-icon-BOAT_JUNGLE {
+    background-position: -288px -1344px;
+}
+.inventory-icon-COAL_ORE {
+    background-position: -672px -992px;
+}
+.inventory-icon-CHROUS_PLANT {
+    background-position: -288px -1024px;
+}
+.inventory-icon-HARD_CLAY {
+    background-position: -704px -960px;
+}
+.inventory-icon-IRON_FRAME {
+    background-position: -224px -672px;
+}
+.inventory-icon-BLAZE_POWDER {
+    background-position: -416px -640px;
+}

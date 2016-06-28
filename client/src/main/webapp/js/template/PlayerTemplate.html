@@ -8,8 +8,8 @@
             <td class="pixel-text-regular text-center">Status</td>
         </tr>
     </thead>
-    <tbody>
-        <tr data-ng-repeat="player in players">
+    <tbody data-ng-repeat="player in players">
+        <tr data-ng-click="toggleSelectedPlayer(player.name)">
             <!-- Player name  -->
             <td class="pixel-text-regular text-center vertical-align-center" data-ng-show="!isDead(player.health)">{{player.name}}</td>
             <td class="pixel-text-regular red-color text-center vertical-align-center" data-ng-show="isDead(player.health)">{{player.name}}</td>
@@ -47,5 +47,16 @@
             <td class="pixel-text-regular green-color text-center vertical-align-center" data-ng-show="player.online">Online</td>
             <td class="pixel-text-regular text-center vertical-align-center" data-ng-show="!player.online">Offline</td>
         </tr>
+        <tr data-ng-show="isSelectedPlayer(player.name)" class="collapsible-background">
+            <td colspan="5" class="pixel-text-regular green-color">
+                <div data-ng-repeat="item in player.items">
+                    {{item}}
+                </div>
+            </td>
+        </tr>
     </tbody>
 </table>
+
+<div style="display:inline;" data-ng-repeat="material in allMaterials" class="parth-tooltip">
+    <button class="inventory-icon inventory-icon-{{material}}"><span class="parth-tooltiptext pixel-text-regular">{{material}}</span></button>
+</div>

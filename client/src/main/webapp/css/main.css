@@ -6,7 +6,17 @@ body {
     table-layout: fixed;
 }
 
-/* Cancel Bootstrap's vertical-align: center on tables */
 .table > tbody > tr > td {
+    /* Cancel Bootstrap's vertical-align: top on tables */
     vertical-align: middle !important;
+}
+.table > tbody > tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.collapsible-background {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+.collapsible-background:hover {
+    background-color: rgba(255, 255, 255, 0.05) !important;
 }

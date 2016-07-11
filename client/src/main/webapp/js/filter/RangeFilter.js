@@ -1,8 +1,8 @@
 define(['js/ParthenonApp'], function(app) {
     app.filter('range', function() {
-        /** Simple range filter in the range [0, max). */
-        return function(input, max) {
-            for (var i = 0; i < parseInt(max); i++) {
+        /** Simple range filter in the range [min, max). */
+        return function(input, min, max) {
+            for (var i = parseInt(min); i < parseInt(max); i++) {
                 input.push(i);
             }
             return input;

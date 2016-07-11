@@ -2,6 +2,10 @@ body {
     background-image: url("../img/background.png");
 }
 
+.display-inline {
+    display: inline;
+}
+
 .table-layout-fixed {
     table-layout: fixed;
 }

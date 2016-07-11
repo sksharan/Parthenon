@@ -77,9 +77,9 @@ public class PlayerServiceImpl implements PlayerService {
         String name = entity.getName();
         int amount = entity.getAmount();
         String type = entity.getType();
-        ItemStackEntity existingEntity = itemStackRepository.findByNameAndAmountAndType(name, amount, type);
-        if (existingEntity != null) {
-            entity.setId(existingEntity.getId());
+        List<ItemStackEntity> existingEntities = itemStackRepository.findByNameAndAmountAndType(name, amount, type);
+        if (!existingEntities.isEmpty()) {
+            entity.setId(existingEntities.get(0).getId());
         }
     }
 

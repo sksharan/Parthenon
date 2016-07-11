@@ -76,8 +76,30 @@ public class ParthenonMapper {
     }
 
     public ItemStackModel map(ItemStack itemStack, ItemStackModel.Type type) {
-        String name = itemStack.getType().name();
+        String name = itemStack.getData().toString();
         int amount = itemStack.getAmount();
+
+        String materialName = itemStack.getType().name();
+        if (materialName.contains("FENCE_GATE")) {
+            name = materialName + " " + name;
+        }
+        if (materialName.equals(Material.MONSTER_EGG.name())) {
+            // metaString ~ UNSPECIFIC_META:{meta-type=UNSPECIFIC, internal=H4sIAAAAAAAAAONiYOBi4HTNK8ksqQxJTOdgYMpMYWALLshMSS1iYAAAmJdvsh4AAAA=}
+            String metaString = itemStack.getItemMeta().toString();
+            if (metaString.length() > 48) {
+                String internal = metaString.substring(48, metaString.length() - 1);
+                name = internal;
+            }
+        }
+        if (materialName.contains("POTION") || materialName.equals(Material.TIPPED_ARROW.name())) {
+            // metaString ~ POTION_META:{meta-type=POTION, potion-type=minecraft:night_vision}
+            String metaString = itemStack.getItemMeta().toString();
+            if (metaString.length() > 53) {
+                String internal = metaString.substring(53, metaString.length() - 1);
+                name = materialName + " " + internal;
+            }
+        }
+
         return new ItemStackModel(name, amount, type);
     }
 

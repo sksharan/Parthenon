@@ -1,4 +1,4 @@
-<table class="table table-condensed table-layout-fixed">
+<table class="table table-condensed table-responsive">
     <thead>
         <tr>
             <td class="pixel-text-regular text-center">Name</td>
@@ -50,36 +50,17 @@
         <tr data-ng-show="isSelectedPlayer(player.name)" class="collapsible-background">
             <td colspan="5" class="pixel-text-regular green-color">
                 <div class="row">
-                    <div class="col-md-3">
-		                    <div data-ng-repeat="item in player.items" data-ng-show="!isGeneral(item)">
-		                        <div class="row">
-		                            <div class="col-md-6 text-center">
-		                                <span class="pixel-text-regular" data-ng-show="isHeldInMainHand(item)">Main Hand: </span>
-				                            <span class="pixel-text-regular" data-ng-show="isHeldInOffHand(item)">Off Hand: </span>
-				                            <span class="pixel-text-regular" data-ng-show="isEquippedBoots(item)">Equipped Boots: </span>
-				                            <span class="pixel-text-regular" data-ng-show="isEquippedChestplate(item)">Equipped Chestplate: </span>
-				                            <span class="pixel-text-regular" data-ng-show="isEquippedHelmet(item)">Equipped Helmet: </span>
-				                            <span class="pixel-text-regular" data-ng-show="isEquippedLeggings(item)">Equipped Leggings: </span>
-		                            </div>
-		                            <div class="col-md-3 parth-tooltip">
-                                    <button class="inventory-icon inventory-icon-{{toCssName(item.name)}}">
-                                        <span class="parth-tooltiptext pixel-text-regular">{{toCssName(item.name)}}</span>
-                                    </button>
-                                </div>
-                                <div class="col-md-3"></div>
-		                        </div>
-		                    </div>
-		                </div>
-		                <div class="col-md-9">
-		                    <div class="row">
-		                        <div class="col-md-12">
-		                            <div data-ng-repeat="item in player.items" class="parth-tooltip display-inline">
-                                    <button class="inventory-icon inventory-icon-{{toCssName(item.name)}}" data-ng-show="isGeneral(item)">
-                                        <span class="parth-tooltiptext pixel-text-regular">{{toCssName(item.name)}}</span>
-                                    </button>
-                                </div>
-		                        </div>
-		                    </div>
+                    <div class="col-md-12">
+                        <div data-ng-repeat="item in player.items" class="parth-tooltip display-inline" data-ng-show="!isGeneral(item)">
+                            <button class="inventory-icon inventory-icon-selected inventory-icon-{{toCssName(item.name)}}" >
+                                <span class="parth-tooltiptext pixel-text-regular">{{toCssName(item.name)}}</span>
+                            </button>
+                        </div>
+                        <div data-ng-repeat="item in player.items" class="parth-tooltip display-inline" data-ng-show="isGeneral(item)">
+                            <button class="inventory-icon inventory-icon-{{toCssName(item.name)}}" >
+                                <span class="parth-tooltiptext pixel-text-regular">{{toCssName(item.name)}}</span>
+                            </button>
+                        </div>
 		                </div>
                 </div>
             </td>

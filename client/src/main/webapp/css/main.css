@@ -1,13 +1,5 @@
-body {
-    background-image: url("../img/background.png");
-}
-
 .display-inline {
     display: inline;
-}
-
-.table-layout-fixed {
-    table-layout: fixed;
 }
 
 .table > tbody > tr > td {
@@ -15,12 +7,13 @@ body {
     vertical-align: middle !important;
 }
 .table > tbody > tr:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #EFF8FB;
+    cursor: pointer;
 }
-
 .collapsible-background {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: #F5F5F5;
 }
 .collapsible-background:hover {
-    background-color: rgba(255, 255, 255, 0.05) !important;
+    background-color: #F5F5F5 !important;
+    cursor: auto !important;
 }

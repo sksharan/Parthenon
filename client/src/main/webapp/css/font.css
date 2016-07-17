@@ -5,19 +5,25 @@
 }
 
 .pixel-text-regular {
-    color: #B0B3B5;
+    color: #000000;
     font-family: pixel;
     font-size: 1.9rem;
 }
-
 .green-color {
     color: #43AB1F;
 }
-
 .red-color {
     color: #AD070A;
 }
-
+.white-color {
+    color: #FFFFFF;
+}
 .text-center {
     text-align: center;
+}
+
+.pixel-text-header {
+    color: #FFFFFF;
+    font-family: pixel;
+    font-size: 2.5rem;
 }

@@ -1,12 +1,10 @@
 .icon-container {
     display: inline;
 }
-
 .heart-icon {
     height: 23px;
     width: 23px;
 }
-
 .hunger-icon {
     height: 23px;
     width: 23px;
@@ -17,9 +15,13 @@
     background-image: url("../img/inventory.png");
     background-repeat: no-repeat;
     border: none;
+    cursor: auto;
     display: inline-block;
     width: 32px;
     height: 32px;
+}
+.inventory-icon-selected {
+    background-color: #A6DAE2;
 }
 /* Use ../WEB-INF/scrips/inventory_icon.lua to auto-generate inventory-icon css */
 .inventory-icon-RECORD90 {

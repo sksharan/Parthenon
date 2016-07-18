@@ -1,4 +1,4 @@
--- Helper script for generating inventory icon css based on the spreadsheet at
+-- Helper script for working with inventory icon css, based on the spreadsheet at
 -- http://minecraft.gamepedia.com/File:InvSprite.png
 
 -- Number of elements on a single row of the spreadsheet
@@ -6,6 +6,37 @@ spreadsheetWidth = 32
 -- Pixel width and height of a single element on the spreadsheet
 elementPixelWidth = 32
 elementPixelHeight = 32
+
+-- Ordered table iterator: see http://lua-users.org/wiki/SortedIteration
+function __genOrderedIndex( t )
+    local orderedIndex = {}
+    for key in pairs(t) do
+        table.insert( orderedIndex, key )
+    end
+    table.sort( orderedIndex )
+    return orderedIndex
+end
+function orderedNext(t, state)
+    key = nil
+    if state == nil then
+        t.__orderedIndex = __genOrderedIndex( t )
+        key = t.__orderedIndex[1]
+    else
+        for i = 1,table.getn(t.__orderedIndex) do
+            if t.__orderedIndex[i] == state then
+                key = t.__orderedIndex[i+1]
+            end
+        end
+    end
+    if key then
+        return key, t[key]
+    end
+    t.__orderedIndex = nil
+    return
+end
+function orderedPairs(t)
+    return orderedNext, t, nil
+end
 
 -- Returns sections as defined at http://minecraft.gamepedia.com/Module:InvSprite/IDs
 function getSections()
@@ -2939,45 +2970,61 @@ function getCoordinates(pos)
     return (pos - 1) % spreadsheetWidth, math.floor((pos - 1) / spreadsheetWidth)
 end
 
+-- Convert the item 'name' to a CSS-compatible name
+function toCssName(name)
+    name = string.gsub(name, "ANVIL%([0-9]+%)", "ANVIL")
+    name = string.gsub(name, "SWORD%([0-9]+%)", "SWORD")
+    name = string.gsub(name, "BOW%([0-9]+%)", "BOW")
+    name = string.gsub(name, "PICKAXE%([0-9]+%)", "PICKAXE")
+    name = string.gsub(name, "SPADE%([0-9]+%)", "SPADE")
+    name = string.gsub(name, "AXE%([0-9]+%)", "AXE")
+    name = string.gsub(name, "HOE%([0-9]+%)", "HOE")
+    name = string.gsub(name, "HELMET%([0-9]+%)", "HELMET")
+    name = string.gsub(name, "CHESTPLATE%([0-9]+%)", "CHESTPLATE")
+    name = string.gsub(name, "LEGGINGS%([0-9]+%)", "LEGGINGS")
+    name = string.gsub(name, "BOOTS%([0-9]+%)", "BOOTS")
+    name = string.gsub(name, "SHEARS%([0-9]+%)", "SHEARS")
+    name = string.gsub(name, "SADDLE%([0-9]+%)", "SADDLE")
+    name = string.gsub(name, "SHIELD%([0-9]+%)", "SHIELD")
+    name = string.gsub(name, "FISHING_ROD%([0-9]+%)", "FISHING_ROD")
+    name = string.gsub(name, "FLINT_AND_STEEL%([0-9]+%)", "FLINT_AND_STEEL")
+    name = string.gsub(name, "long_", "")
+    name = string.gsub(name, "strong_", "")
+    name = string.gsub(name, " facing[a-zA-Z0-9 ]*", "")
+    name = string.gsub(name, "[ %(%)=/]", "_")
+    name = string.gsub(name, "_", "")
+    return name
+end
+
 function printInventoryIconCss()
     local sections = getSections()
     local ids = getIds()
     local spigotMappings = getSpigotMappings()
-
-    for key, value in pairs(spigotMappings) do
+    for key, value in orderedPairs(spigotMappings) do
         if value.name ~= '' then
             local x, y = getCoordinates(ids[key].pos)
             local xPos = -elementPixelWidth * x .. 'px'
             local yPos = -elementPixelHeight * y .. 'px'
-
-            local name = value.name
-            name = string.gsub(name, "ANVIL%([0-9]+%)", "ANVIL")
-            name = string.gsub(name, "SWORD%([0-9]+%)", "SWORD")
-            name = string.gsub(name, "BOW%([0-9]+%)", "BOW")
-            name = string.gsub(name, "PICKAXE%([0-9]+%)", "PICKAXE")
-            name = string.gsub(name, "SPADE%([0-9]+%)", "SPADE")
-            name = string.gsub(name, "AXE%([0-9]+%)", "AXE")
-            name = string.gsub(name, "HOE%([0-9]+%)", "HOE")
-            name = string.gsub(name, "HELMET%([0-9]+%)", "HELMET")
-            name = string.gsub(name, "CHESTPLATE%([0-9]+%)", "CHESTPLATE")
-            name = string.gsub(name, "LEGGINGS%([0-9]+%)", "LEGGINGS")
-            name = string.gsub(name, "BOOTS%([0-9]+%)", "BOOTS")
-            name = string.gsub(name, "SHEARS%([0-9]+%)", "SHEARS")
-            name = string.gsub(name, "SADDLE%([0-9]+%)", "SADDLE")
-            name = string.gsub(name, "SHIELD%([0-9]+%)", "SHIELD")
-            name = string.gsub(name, "FISHING_ROD%([0-9]+%)", "FISHING_ROD")
-            name = string.gsub(name, "FLINT_AND_STEEL%([0-9]+%)", "FLINT_AND_STEEL")
-            name = string.gsub(name, "long_", "")
-            name = string.gsub(name, "strong_", "")
-            name = string.gsub(name, " facing[a-zA-Z0-9 ]*", "")
-            name = string.gsub(name, "[ %(%)=/]", "_")
-            name = string.gsub(name, "_", "")
-
-            print('.inventory-icon-' .. name .. ' {')
+            print('.inventory-icon-' .. toCssName(value.name) .. ' {')
             print('    background-position: ' .. xPos .. ' ' .. yPos .. ';')
             print('}')
         end
     end
 end
 
-printInventoryIconCss()
+function printSpigotNameFriendlyNamePairs()
+    local sections = getSections()
+    local ids = getIds()
+    local spigotMappings = getSpigotMappings()
+    print('{')
+    for key, value in orderedPairs(spigotMappings) do
+        if value.name ~= '' then
+            print('    "' .. toCssName(value.name) .. '": "' .. key .. '",')
+        end
+    end
+    print('}')
+end
+
+-- Uncomment either line to print
+--printInventoryIconCss()
+printSpigotNameFriendlyNamePairs()

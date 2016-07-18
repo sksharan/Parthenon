@@ -52,13 +52,13 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div data-ng-repeat="item in player.items" class="parth-tooltip display-inline" data-ng-show="!isGeneral(item)">
-                            <button class="inventory-icon inventory-icon-selected inventory-icon-{{toCssName(item.name)}}" >
-                                <span class="parth-tooltiptext pixel-text-regular">{{toCssName(item.name)}}</span>
+                            <button class="inventory-icon inventory-icon-selected inventory-icon-{{toCssItemName(item.name)}}" >
+                                <span class="parth-tooltiptext pixel-text-regular">{{toFriendlyItemName(toCssItemName(item.name))}}</span>
                             </button>
                         </div>
                         <div data-ng-repeat="item in player.items" class="parth-tooltip display-inline" data-ng-show="isGeneral(item)">
-                            <button class="inventory-icon inventory-icon-{{toCssName(item.name)}}" >
-                                <span class="parth-tooltiptext pixel-text-regular">{{toCssName(item.name)}}</span>
+                            <button class="inventory-icon inventory-icon-{{toCssItemName(item.name)}}" >
+                                <span class="parth-tooltiptext pixel-text-regular">{{toFriendlyItemName(toCssItemName(item.name))}}</span>
                             </button>
                         </div>
 		                </div>

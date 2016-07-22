@@ -60,12 +60,21 @@ public class PlayerServiceImpl implements PlayerService {
     public void savePlayer(PlayerModel playerModel) {
         PlayerEntity playerEntity = modelMapper.map(playerModel, PlayerEntity.class);
         setPlayerEntityId(playerEntity);
-        for (ItemStackEntity itemStackEntity: playerEntity.getItems()) {
+        for (int i = 0; i < playerEntity.getItems().size(); i++) {
+            /* Handle the case of the player having duplicate item stacks by saving each
+             * item stack individually before saving the player. This ensures that every
+             * item stack has a valid ID. Update the player's items with the ones returned
+             * by the repository save() method to prevent a "detached entity" error when
+             * saving the player. */
+            ItemStackEntity itemStackEntity = playerEntity.getItems().get(i);
             setItemStackEntityId(itemStackEntity);
+            itemStackEntity = itemStackRepository.save(itemStackEntity);
+            playerEntity.getItems().set(i, itemStackEntity);
         }
         playerRepository.save(playerEntity);
     }
 
+    /** Sets the id of the player entity if it exists in the database. */
     private void setPlayerEntityId(PlayerEntity entity) {
         PlayerEntity existingEntity = playerRepository.findByName(entity.getName());
         if (existingEntity != null) {
@@ -73,6 +82,7 @@ public class PlayerServiceImpl implements PlayerService {
         }
     }
 
+    /** Sets the id of the item stack entity if it exists in the database. */
     private void setItemStackEntityId(ItemStackEntity entity) {
         String name = entity.getName();
         int amount = entity.getAmount();

@@ -68,6 +68,25 @@ public class PlayerControllerTest extends ParthenonIntegrationTest {
 
     @Test
     @DirtiesContext
+    public void testSavePlayerWithDuplicateItemsMultipleTimes() {
+        List<ItemStackModel> i1 = new ArrayList<ItemStackModel>();
+        i1.add(new ItemStackModel("WOOD", 47, ItemStackModel.Type.GENERAL));
+        i1.add(new ItemStackModel("WOOD", 47, ItemStackModel.Type.GENERAL));
+        i1.add(new ItemStackModel("WOOD", 47, ItemStackModel.Type.HELD_IN_MAIN_HAND));
+        i1.add(new ItemStackModel("WOOD", 48, ItemStackModel.Type.GENERAL));
+        i1.add(new ItemStackModel("WOOD", 49, ItemStackModel.Type.GENERAL));
+        i1.add(new ItemStackModel("WOOD", 47, ItemStackModel.Type.GENERAL));
+        PlayerModel pm1 = new PlayerModel("Player", 2, 17, 0, 6, true, i1);
+        playerController.savePlayer(pm1);
+        playerController.savePlayer(pm1);
+
+        assertEquals(1, playerRepository.count());
+        checkEquals(pm1, playerRepository.findByName("Player"));
+        assertEquals(4, itemStackRepository.count());
+    }
+
+    @Test
+    @DirtiesContext
     public void testGetPlayers() {
         List<ItemStackEntity> i1 = new ArrayList<ItemStackEntity>();
         PlayerEntity pe1 = new PlayerEntity("Player1", 13, 20, 0, 12, true, i1);
@@ -101,6 +120,23 @@ public class PlayerControllerTest extends ParthenonIntegrationTest {
         assertEquals(2, players.size());
         checkEquals(players.get(0), pe3);
         checkEquals(players.get(1), pe2);
+    }
+
+    @Test
+    @DirtiesContext
+    public void testGetPlayerWithDuplicateItems() {
+        List<ItemStackEntity> i1 = new ArrayList<ItemStackEntity>();
+        i1.add(new ItemStackEntity("WOOD", 47, ItemStackModel.Type.GENERAL.name()));
+        i1.add(new ItemStackEntity("WOOD", 47, ItemStackModel.Type.GENERAL.name()));
+        i1.add(new ItemStackEntity("WOOD", 47, ItemStackModel.Type.HELD_IN_MAIN_HAND.name()));
+        i1.add(new ItemStackEntity("WOOD", 48, ItemStackModel.Type.GENERAL.name()));
+        i1.add(new ItemStackEntity("WOOD", 49, ItemStackModel.Type.GENERAL.name()));
+        i1.add(new ItemStackEntity("WOOD", 47, ItemStackModel.Type.GENERAL.name()));
+        PlayerEntity pe1 = new PlayerEntity("Player", 2, 17, 0, 6, true, i1);
+        playerRepository.save(pe1);
+
+        assertEquals(1, playerRepository.count());
+        checkEquals(playerController.getPlayer("Player").getBody(), pe1);
     }
 
     @Test

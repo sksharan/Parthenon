@@ -24,8 +24,8 @@ public class SaveAllPlayersRunnable implements Runnable {
     private final ParthenonMapper parthenonMapper;
 
     @Inject
-    public SaveAllPlayersRunnable(@Assisted ParthenonPlugin parthenonPlugin, NetworkUtils networkUtils,
-            ParthenonMapper parthenonMapper) {
+    public SaveAllPlayersRunnable(@Assisted ParthenonPlugin parthenonPlugin,
+            NetworkUtils networkUtils, ParthenonMapper parthenonMapper) {
         this.parthenonPlugin = parthenonPlugin;
         this.networkUtils = networkUtils;
         this.parthenonMapper = parthenonMapper;
@@ -37,17 +37,21 @@ public class SaveAllPlayersRunnable implements Runnable {
             for (OfflinePlayer offlinePlayer: parthenonPlugin.getServer().getOfflinePlayers()) {
                 PlayerModel playerModel;
                 if (offlinePlayer.isOnline()) {
-                    parthenonPlugin.getLogger().log(Level.INFO, offlinePlayer.getName() + " is currently online");
+                    parthenonPlugin.getLogger().log(Level.INFO,
+                            offlinePlayer.getName() + " is currently online");
                     playerModel = parthenonMapper.map(offlinePlayer.getPlayer());
                 } else {
-                    parthenonPlugin.getLogger().log(Level.INFO, offlinePlayer.getName() + " is currently offline");
-                    playerModel = new PlayerModel(offlinePlayer.getName(), 0, 20, 0, 0, false, new ArrayList<ItemStackModel>());
+                    parthenonPlugin.getLogger().log(Level.INFO,
+                            offlinePlayer.getName() + " is currently offline");
+                    playerModel = new PlayerModel(offlinePlayer.getName(),
+                            0, 20, 0, 0, false, new ArrayList<ItemStackModel>());
                 }
 
                 String url = PlayerUrl.savePlayerUrl(parthenonPlugin.getServerBaseUrl());
                 try (CloseableHttpResponse response = networkUtils.sendPostRequestJson(url, playerModel)) {
                     if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                        parthenonPlugin.getLogger().log(Level.INFO, "Successfully saved info for " + playerModel.getName());
+                        parthenonPlugin.getLogger().log(Level.INFO,
+                                "Successfully saved info for " + playerModel.getName());
                     }
                 }
             }

@@ -20,7 +20,7 @@ import com.github.sksharan.parthenon.server.dao.PlayerRepository;
 import com.github.sksharan.parthenon.server.entity.ItemStackEntity;
 import com.github.sksharan.parthenon.server.entity.PlayerEntity;
 
-public class PlayerControllerTest extends ParthenonIntegrationTest {
+public class PlayerControllerIT extends ParthenonIntegrationTest {
     @Autowired private PlayerController playerController;
     @Autowired private PlayerRepository playerRepository;
     @Autowired private ItemStackRepository itemStackRepository;

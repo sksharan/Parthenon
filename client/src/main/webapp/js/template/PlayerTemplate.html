@@ -11,8 +11,8 @@
     <tbody data-ng-repeat="player in players">
         <tr data-ng-click="toggleSelectedPlayer(player.name)">
             <!-- Player name  -->
-            <td class="pixel-text-regular text-center vertical-align-center" data-ng-show="!isDead(player.health)">{{player.name}}</td>
-            <td class="pixel-text-regular red-color text-center vertical-align-center" data-ng-show="isDead(player.health)">{{player.name}}</td>
+            <td class="pixel-text-regular text-center vertical-align-center" data-ng-show="!isDead(player)">{{player.name}}</td>
+            <td class="pixel-text-regular red-color text-center vertical-align-center" data-ng-show="isDead(player)">{{player.name}}</td>
 
             <!-- Player health -->
             <td class="text-center vertical-align-center">

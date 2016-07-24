@@ -24,9 +24,9 @@ define(['js/ParthenonApp', 'js/filter/RangeFilter', 'js/service/PlayerService'],
             return $scope.selectedPlayers.indexOf(name) !== -1;
         }
 
-        /** Returns true if the player has no health remaining. */
-        $scope.isDead = function(health) {
-            return Math.floor(health) === 0;
+        /** Return true if the player is considered dead */
+        $scope.isDead = function(player) {
+            return player.online && Math.floor(player.health) === 0;
         };
 
         /** Returns the number of full heart icons used to represent the player's health. */

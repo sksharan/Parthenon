@@ -1,7 +1,7 @@
 define(['js/ParthenonApp', 'js/filter/RangeFilter', 'js/service/PlayerService'], function(app) {
-    
+
     "use strict";
-    
+
     app.controller('PlayerController',
             ['$scope', '$timeout', 'PlayerService', function($scope, $timeout, PlayerService) {
 

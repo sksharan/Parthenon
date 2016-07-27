@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 
 import java.net.URI;
 
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -22,6 +23,7 @@ public class NetworkUtilsTest {
     private NetworkUtils networkUtils;
 
     private CloseableHttpClient httpClient;
+    private Provider<HttpGet> httpGetProvider;
     private Provider<HttpPost> httpPostProvider;
     private HttpPost httpPost;
     private ObjectMapper objectMapper;
@@ -30,12 +32,14 @@ public class NetworkUtilsTest {
     @SuppressWarnings("unchecked")
     public void setup() {
         httpClient = mock(CloseableHttpClient.class);
+        httpGetProvider = mock(Provider.class);
         httpPostProvider = mock(Provider.class);
         httpPost = mock(HttpPost.class);
         objectMapper = new ObjectMapper();
         when(httpPostProvider.get()).thenReturn(httpPost);
 
-        networkUtils = new NetworkUtils(httpClient, httpPostProvider, objectMapper);
+        networkUtils = new NetworkUtils(httpClient, httpGetProvider,
+                httpPostProvider, objectMapper);
     }
 
     @Test

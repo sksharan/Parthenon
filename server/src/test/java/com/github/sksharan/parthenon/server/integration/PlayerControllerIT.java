@@ -1,6 +1,7 @@
 package com.github.sksharan.parthenon.server.integration;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -142,6 +143,16 @@ public class PlayerControllerIT extends ParthenonIntegrationTest {
     @Test
     public void testGetNonExistentPlayer() {
         assertTrue(playerController.getPlayer("SomePlayer").getStatusCode().is4xxClientError());
+    }
+
+    @Test
+    @DirtiesContext
+    public void testPlayerExists() {
+        PlayerEntity pe1 = new PlayerEntity("Player1", 13, 20, 0, 12, true, null);
+        playerRepository.save(pe1);
+        assertTrue(playerController.playerExists(pe1.getName()).getBody());
+        assertFalse(playerController.playerExists("Not a player").getBody());
+        assertFalse(playerController.playerExists(null).getBody());
     }
 
     private void checkEquals(PlayerModel pm, PlayerEntity pe) {

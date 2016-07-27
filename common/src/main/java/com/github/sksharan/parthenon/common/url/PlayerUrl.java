@@ -11,12 +11,12 @@ public class PlayerUrl {
         return baseUrl + PlayerUrl.URL;
     }
 
-    public static String savePlayerUrl(String baseUrl) {
-        return baseUrl + PlayerUrl.URL;
+    public static String getPlayerExistsUrl(String baseUrl, String playerName) {
+        return baseUrl + PlayerUrl.URL + "/" + playerName + "/exists";
     }
 
-    public static String updatePlayerOnlineUrl(String baseUrl, String playerName) {
-        return baseUrl + PlayerUrl.URL + "/" + playerName + "/online";
+    public static String savePlayerUrl(String baseUrl) {
+        return baseUrl + PlayerUrl.URL;
     }
 
 }

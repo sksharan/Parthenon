@@ -39,6 +39,12 @@ public class PlayerController {
         return ResponseEntity.ok(playerService.getAllPlayers());
     }
 
+    @RequestMapping(value = "/{playerName}/exists", method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> playerExists(@PathVariable String playerName) {
+        return ResponseEntity.ok(playerService.playerExists(playerName));
+    }
+
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<PlayerModel> savePlayer(@RequestBody PlayerModel playerModel) {

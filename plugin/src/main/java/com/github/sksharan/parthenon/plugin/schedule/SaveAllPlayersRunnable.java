@@ -6,15 +6,12 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.apache.http.HttpStatus;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.CloseableHttpResponse;
 import org.bukkit.OfflinePlayer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.sksharan.parthenon.common.client.ParthenonClient;
 import com.github.sksharan.parthenon.common.model.ItemStackModel;
 import com.github.sksharan.parthenon.common.model.PlayerModel;
-import com.github.sksharan.parthenon.common.url.PlayerUrl;
 import com.github.sksharan.parthenon.plugin.ParthenonPlugin;
 import com.github.sksharan.parthenon.plugin.mapper.ParthenonMapper;
 import com.github.sksharan.parthenon.plugin.network.NetworkUtils;
@@ -23,6 +20,8 @@ import com.google.inject.assistedinject.Assisted;
 
 /** Periodically updates the data for all players who have ever joined the server. */
 public class SaveAllPlayersRunnable implements Runnable {
+    private static final String BASE_URL = "http://localhost:8080";
+
     private final ParthenonPlugin parthenonPlugin;
     private final NetworkUtils networkUtils;
     private final ObjectMapper objectMapper;
@@ -52,25 +51,16 @@ public class SaveAllPlayersRunnable implements Runnable {
                     playerModel = getOfflinePlayerModel(offlinePlayer.getName());
                 }
 
-                String url = PlayerUrl.savePlayerUrl(parthenonPlugin.getServerBaseUrl());
-                try (CloseableHttpResponse response = networkUtils.sendPostRequestJson(url, playerModel)) {
-                    if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                        parthenonPlugin.getLogger().log(Level.INFO,
-                                "Successfully saved info for " + playerModel.getName());
-                    }
-                }
+                ParthenonClient.getPlayerClient().savePlayer(BASE_URL, playerModel);
             }
         } catch (Exception e) {
             parthenonPlugin.getLogger().log(Level.SEVERE, ExceptionUtils.getStackTrace(e));
         }
     }
 
-    private PlayerModel getOfflinePlayerModel(String playerName)
-            throws ClientProtocolException, URISyntaxException, IOException {
+    private PlayerModel getOfflinePlayerModel(String playerName) throws URISyntaxException, IOException {
 
-        String playerExists = networkUtils.sendGetRequest(
-               PlayerUrl.getPlayerExistsUrl(parthenonPlugin.getServerBaseUrl(), playerName));
-        if (!Boolean.parseBoolean(playerExists)) {
+        if (!ParthenonClient.getPlayerClient().playerExists(BASE_URL, playerName)) {
             PlayerModel playerModel = new PlayerModel();
             playerModel.setName(playerName);
             playerModel.setItems(new ArrayList<ItemStackModel>());
@@ -78,9 +68,7 @@ public class SaveAllPlayersRunnable implements Runnable {
             return playerModel;
         }
 
-        String playerModelJson = networkUtils.sendGetRequest(
-                PlayerUrl.getPlayerUrl(parthenonPlugin.getServerBaseUrl(), playerName));
-        PlayerModel playerModel = objectMapper.readValue(playerModelJson, PlayerModel.class);
+        PlayerModel playerModel = ParthenonClient.getPlayerClient().getPlayer(BASE_URL, playerName);
         playerModel.setOnline(false);
         return playerModel;
     }

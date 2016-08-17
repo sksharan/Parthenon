@@ -1,4 +1,4 @@
-package com.github.sksharan.parthenon.plugin.mapper;
+package com.github.sksharan.parthenon.plugin;
 
 import java.util.ArrayList;
 import java.util.Iterator;

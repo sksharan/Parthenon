@@ -1,4 +1,4 @@
-package com.github.sksharan.parthenon.plugin;
+package com.github.sksharan.parthenon.plugin.stat;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -12,7 +12,7 @@ import org.bukkit.inventory.PlayerInventory;
 import com.github.sksharan.parthenon.common.model.ItemStackModel;
 import com.github.sksharan.parthenon.common.model.PlayerModel;
 
-public class ParthenonMapper {
+public class ParthenonStatMapper {
 
     public PlayerModel map(Player player) {
         String name = player.getName();

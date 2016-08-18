@@ -1,4 +1,4 @@
-package com.github.sksharan.parthenon.plugin;
+package com.github.sksharan.parthenon.plugin.stat;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -12,11 +12,11 @@ import com.github.sksharan.parthenon.common.model.ItemStackModel;
 import com.github.sksharan.parthenon.common.model.PlayerModel;
 
 /** Periodically updates the data for all players who have ever joined the server. */
-public class SaveAllPlayersRunnable implements Runnable {
-    private final ParthenonPlugin parthenonPlugin;
-    private final ParthenonMapper parthenonMapper;
+public class SaveAllStatsRunnable implements Runnable {
+    private final ParthenonStatPlugin parthenonPlugin;
+    private final ParthenonStatMapper parthenonMapper;
 
-    public SaveAllPlayersRunnable(ParthenonPlugin parthenonPlugin, ParthenonMapper parthenonMapper) {
+    public SaveAllStatsRunnable(ParthenonStatPlugin parthenonPlugin, ParthenonStatMapper parthenonMapper) {
         this.parthenonPlugin = parthenonPlugin;
         this.parthenonMapper = parthenonMapper;
     }
@@ -33,7 +33,7 @@ public class SaveAllPlayersRunnable implements Runnable {
                     parthenonPlugin.logInfo("%s is currently offline", offlinePlayer.getName());
                     playerModel = getOfflinePlayerModel(offlinePlayer.getName());
                 }
-                ParthenonClient.getPlayerClient().savePlayer(ParthenonPlugin.BASE_URL, playerModel);
+                ParthenonClient.getPlayerClient().savePlayer(ParthenonStatPlugin.BASE_URL, playerModel);
             }
         } catch (Exception e) {
             parthenonPlugin.logSevere(ExceptionUtils.getStackTrace(e));
@@ -42,8 +42,8 @@ public class SaveAllPlayersRunnable implements Runnable {
 
     private PlayerModel getOfflinePlayerModel(String playerName) throws URISyntaxException, IOException {
         PlayerModel playerModel;
-        if (ParthenonClient.getPlayerClient().playerExists(ParthenonPlugin.BASE_URL, playerName)) {
-            playerModel = ParthenonClient.getPlayerClient().getPlayer(ParthenonPlugin.BASE_URL, playerName);
+        if (ParthenonClient.getPlayerClient().playerExists(ParthenonStatPlugin.BASE_URL, playerName)) {
+            playerModel = ParthenonClient.getPlayerClient().getPlayer(ParthenonStatPlugin.BASE_URL, playerName);
             playerModel.setOnline(false);
         } else {
             playerModel = new PlayerModel();

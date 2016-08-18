@@ -1,0 +1,3 @@
+name: ParthenonStatPlugin
+main: com.github.sksharan.parthenon.plugin.stat.ParthenonStatPlugin
+version: 1.0

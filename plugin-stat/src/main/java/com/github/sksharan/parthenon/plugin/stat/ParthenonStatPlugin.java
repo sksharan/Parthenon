@@ -1,25 +1,25 @@
-package com.github.sksharan.parthenon.plugin;
+package com.github.sksharan.parthenon.plugin.stat;
 
 import java.util.logging.Level;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 
-public class ParthenonPlugin extends JavaPlugin {
+public class ParthenonStatPlugin extends JavaPlugin {
     public static final String BASE_URL = "http://localhost:8080";
 
     @Override
     public void onEnable() {
         initializeScheduler();
-        logInfo("ParthenonPlugin enabled");
+        logInfo("Parthenon Stat Plugin enabled");
     }
 
 
     private void initializeScheduler() {
         BukkitScheduler scheduler = getServer().getScheduler();
-        SaveAllPlayersRunnable runnable = new SaveAllPlayersRunnable(this, new ParthenonMapper());
+        SaveAllStatsRunnable runnable = new SaveAllStatsRunnable(this, new ParthenonStatMapper());
         if (scheduler.scheduleSyncRepeatingTask(this, runnable, 0L, 350L) == -1) {
-            logSevere("Scheduling failed for SaveAllPlayersRunnable");
+            logSevere("Scheduling failed for SaveAllStatsRunnable");
         }
     }
 

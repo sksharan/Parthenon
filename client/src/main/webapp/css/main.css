@@ -7,9 +7,27 @@
     vertical-align: middle !important;
 }
 .table > tbody > tr:hover {
-    background-color: #EFF8FB;
     cursor: pointer;
 }
+.online-player-row {
+    background-color: #D2EEBD
+}
+.online-player-row:hover {
+    background-color: #BCE99A
+}
+.offline-player-row {
+    background-color: #DFDFDF
+}
+.offline-player-row:hover {
+    background-color: #D2D2D2
+}
+.dead-player-row {
+    background-color: #DEB1B1
+}
+.dead-player-row:hover {
+    background-color: #DFA4A4
+}
+
 .collapsible-background {
     background-color: #F5F5F5;
 }

@@ -5,14 +5,14 @@
             <td class="pixel-text-regular text-center">Health</td>
             <td class="pixel-text-regular text-center">Level</td>
             <td class="pixel-text-regular text-center">Food</td>
-            <td class="pixel-text-regular text-center">Status</td>
         </tr>
     </thead>
     <tbody data-ng-repeat="player in players">
-        <tr data-ng-click="toggleSelectedPlayer(player.name)">
+        <tr data-ng-click="toggleSelectedPlayer(player.name)" data-ng-class="{'online-player-row': player.online,
+                                                                              'offline-player-row': !player.online,
+                                                                              'dead-player-row': isDead(player)}">
             <!-- Player name  -->
-            <td class="pixel-text-regular text-center vertical-align-center" data-ng-show="!isDead(player)">{{player.name}}</td>
-            <td class="pixel-text-regular red-color text-center vertical-align-center" data-ng-show="isDead(player)">{{player.name}}</td>
+            <td class="pixel-text-regular text-center vertical-align-center">{{player.name}}</td>
 
             <!-- Player health -->
             <td class="text-center vertical-align-center">
@@ -42,10 +42,6 @@
                     <img src="img/hunger_full.png" class="hunger-icon">
                 </div>
             </td>
-
-            <!-- Player status -->
-            <td class="pixel-text-regular green-color text-center vertical-align-center" data-ng-show="player.online">Online</td>
-            <td class="pixel-text-regular text-center vertical-align-center" data-ng-show="!player.online">Offline</td>
         </tr>
         <tr data-ng-show="isSelectedPlayer(player.name)" class="collapsible-background">
             <td colspan="5" class="pixel-text-regular green-color">

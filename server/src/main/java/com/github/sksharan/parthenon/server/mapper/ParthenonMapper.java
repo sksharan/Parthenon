@@ -93,15 +93,15 @@ public class ParthenonMapper {
     private PlayerEntity toPlayerEntity(PlayerModel playerModel) {
         List<ItemStackEntity> playerInventory = toItemStackEntityList(playerModel.getItems());
         return new PlayerEntity(playerModel.getName(), playerModel.getHealth(),
-                playerModel.getMaxHealth(), playerModel.getExpLevel(), playerModel.getFoodLevel(),
-                playerModel.isOnline(), playerInventory);
+                playerModel.getMaxHealth(), playerModel.getExpLevel(), playerModel.getCurrExpPercentage(),
+                playerModel.getFoodLevel(), playerModel.isOnline(), playerInventory);
     }
 
     private PlayerModel toPlayerModel(PlayerEntity playerEntity) {
         List<ItemStackModel> playerInventory = toItemStackModelList(playerEntity.getItems());
         return new PlayerModel(playerEntity.getName(), playerEntity.getHealth(),
-                playerEntity.getMaxHealth(), playerEntity.getExpLevel(), playerEntity.getFoodLevel(),
-                playerEntity.isOnline(), playerInventory);
+                playerEntity.getMaxHealth(), playerEntity.getExpLevel(), playerEntity.getCurrExpPercentage(),
+                playerEntity.getFoodLevel(), playerEntity.isOnline(), playerInventory);
     }
 
 }

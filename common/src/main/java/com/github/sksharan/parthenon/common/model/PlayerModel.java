@@ -19,6 +19,9 @@ public class PlayerModel {
     private int expLevel;
 
     @JsonProperty
+    private double currExpPercentage;
+
+    @JsonProperty
     private int foodLevel;
 
     @JsonProperty
@@ -29,12 +32,13 @@ public class PlayerModel {
 
     public PlayerModel() { }
 
-    public PlayerModel(String name, double health, double maxHealth, int expLevel, int foodLevel,
-            boolean isOnline, List<ItemStackModel> items) {
+    public PlayerModel(String name, double health, double maxHealth, int expLevel,
+            double currExpPercentage, int foodLevel, boolean isOnline, List<ItemStackModel> items) {
         this.name = name;
         this.health = health;
         this.maxHealth = maxHealth;
         this.expLevel = expLevel;
+        this.currExpPercentage = currExpPercentage;
         this.foodLevel = foodLevel;
         this.isOnline = isOnline;
         this.items = items;
@@ -70,6 +74,14 @@ public class PlayerModel {
 
     public void setExpLevel(int expLevel) {
         this.expLevel = expLevel;
+    }
+
+    public double getCurrExpPercentage() {
+        return currExpPercentage;
+    }
+
+    public void setCurrExpPercentage(double currExpPercentage) {
+        this.currExpPercentage = currExpPercentage;
     }
 
     public int getFoodLevel() {

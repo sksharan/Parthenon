@@ -19,6 +19,7 @@ public class ParthenonStatMapper {
         double health = player.getHealth();
         double maxHealth = player.getMaxHealth();
         int expLevel = player.getLevel();
+        double currExpPercentage = player.getExp();
         int foodLevel = player.getFoodLevel();
         boolean isOnline = player.isOnline();
 
@@ -71,8 +72,8 @@ public class ParthenonStatMapper {
             }
         }
 
-        return new PlayerModel(name, health, maxHealth, expLevel, foodLevel,
-                isOnline, items);
+        return new PlayerModel(name, health, maxHealth, expLevel, currExpPercentage,
+                foodLevel, isOnline, items);
     }
 
     public ItemStackModel map(ItemStack itemStack, ItemStackModel.Type type) {

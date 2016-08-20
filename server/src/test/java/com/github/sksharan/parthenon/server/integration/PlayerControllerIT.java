@@ -31,7 +31,7 @@ public class PlayerControllerIT extends ParthenonIntegrationTest {
     @DirtiesContext
     public void testSavePlayers() {
         List<ItemStackModel> i1 = new ArrayList<ItemStackModel>();
-        PlayerModel pm1 = new PlayerModel("Player1", 0, 20, 0, 15, false, i1);
+        PlayerModel pm1 = new PlayerModel("Player1", 0, 20, 0, 0.1, 15, false, i1);
         playerController.savePlayer(pm1);
 
         assertEquals(1, playerRepository.count());
@@ -40,7 +40,7 @@ public class PlayerControllerIT extends ParthenonIntegrationTest {
 
         List<ItemStackModel> i2 = new ArrayList<ItemStackModel>();
         i2.add(new ItemStackModel("COBBLESTONE", 61, ItemStackModel.Type.GENERAL));
-        PlayerModel pm2 = new PlayerModel("Player2", 0, 9, 3, 20, false, i2);
+        PlayerModel pm2 = new PlayerModel("Player2", 0, 9, 3, 0.5, 20, false, i2);
         playerController.savePlayer(pm2);
 
         assertEquals(2, playerRepository.count());
@@ -50,7 +50,7 @@ public class PlayerControllerIT extends ParthenonIntegrationTest {
         List<ItemStackModel> i3 = new ArrayList<ItemStackModel>();
         i3.add(new ItemStackModel("DIAMOND_HELMET", 32, ItemStackModel.Type.EQUIPPED_HELMET));
         i3.add(new ItemStackModel("WOOD", 47, ItemStackModel.Type.GENERAL));
-        PlayerModel pm3 = new PlayerModel("Player1", 2, 17, 0, 6, true, i3);
+        PlayerModel pm3 = new PlayerModel("Player1", 2, 17, 0, 0.99, 6, true, i3);
         playerController.savePlayer(pm3);
 
         assertEquals(2, playerRepository.count());
@@ -59,7 +59,7 @@ public class PlayerControllerIT extends ParthenonIntegrationTest {
 
         List<ItemStackModel> i4 = new ArrayList<ItemStackModel>();
         i3.add(new ItemStackModel("DIAMOND_HELMET", 32, ItemStackModel.Type.EQUIPPED_HELMET));
-        PlayerModel pm4 = new PlayerModel("Player1", 4, 15, 32, 19, true, i4);
+        PlayerModel pm4 = new PlayerModel("Player1", 4, 15, 32, 0.5, 19, true, i4);
         playerController.savePlayer(pm4);
 
         assertEquals(2, playerRepository.count());
@@ -77,7 +77,7 @@ public class PlayerControllerIT extends ParthenonIntegrationTest {
         i1.add(new ItemStackModel("WOOD", 48, ItemStackModel.Type.GENERAL));
         i1.add(new ItemStackModel("WOOD", 49, ItemStackModel.Type.GENERAL));
         i1.add(new ItemStackModel("WOOD", 47, ItemStackModel.Type.GENERAL));
-        PlayerModel pm1 = new PlayerModel("Player", 2, 17, 0, 6, true, i1);
+        PlayerModel pm1 = new PlayerModel("Player", 2, 17, 0, 0.5, 6, true, i1);
         playerController.savePlayer(pm1);
         playerController.savePlayer(pm1);
 
@@ -90,7 +90,7 @@ public class PlayerControllerIT extends ParthenonIntegrationTest {
     @DirtiesContext
     public void testGetPlayers() {
         List<ItemStackEntity> i1 = new ArrayList<ItemStackEntity>();
-        PlayerEntity pe1 = new PlayerEntity("Player1", 13, 20, 0, 12, true, i1);
+        PlayerEntity pe1 = new PlayerEntity("Player1", 13, 20, 0, 0, 12, true, i1);
         playerRepository.save(pe1);
 
         assertEquals(1, playerRepository.count());
@@ -99,7 +99,7 @@ public class PlayerControllerIT extends ParthenonIntegrationTest {
         List<ItemStackEntity> i2 = new ArrayList<ItemStackEntity>();
         i2.add(new ItemStackEntity("DIAMOND_HELMET", 12, ItemStackModel.Type.EQUIPPED_HELMET.name()));
         i2.add(new ItemStackEntity("WOOD", 47, ItemStackModel.Type.GENERAL.name()));
-        PlayerEntity pe2 = new PlayerEntity("Player2", 4, 20, 14, 30, true, i2);
+        PlayerEntity pe2 = new PlayerEntity("Player2", 4, 20, 14, 0.5, 30, true, i2);
         playerRepository.save(pe2);
 
         assertEquals(2, playerRepository.count());
@@ -107,7 +107,7 @@ public class PlayerControllerIT extends ParthenonIntegrationTest {
 
         List<ItemStackEntity> i3 = new ArrayList<ItemStackEntity>();
         i3.add(new ItemStackEntity("COBBLESTONE", 12, ItemStackModel.Type.GENERAL.name()));
-        PlayerEntity pe3 = new PlayerEntity("Player1", 12, 20, 5, 9, false, i3);
+        PlayerEntity pe3 = new PlayerEntity("Player1", 12, 20, 5, 0.24, 9, false, i3);
         pe3.setId(playerRepository.findByName("Player1").getId());
         playerRepository.save(pe3);
 
@@ -133,7 +133,7 @@ public class PlayerControllerIT extends ParthenonIntegrationTest {
         i1.add(new ItemStackEntity("WOOD", 48, ItemStackModel.Type.GENERAL.name()));
         i1.add(new ItemStackEntity("WOOD", 49, ItemStackModel.Type.GENERAL.name()));
         i1.add(new ItemStackEntity("WOOD", 47, ItemStackModel.Type.GENERAL.name()));
-        PlayerEntity pe1 = new PlayerEntity("Player", 2, 17, 0, 6, true, i1);
+        PlayerEntity pe1 = new PlayerEntity("Player", 2, 17, 0, 0.5, 6, true, i1);
         playerRepository.save(pe1);
 
         assertEquals(1, playerRepository.count());
@@ -148,7 +148,7 @@ public class PlayerControllerIT extends ParthenonIntegrationTest {
     @Test
     @DirtiesContext
     public void testPlayerExists() {
-        PlayerEntity pe1 = new PlayerEntity("Player1", 13, 20, 0, 12, true, null);
+        PlayerEntity pe1 = new PlayerEntity("Player1", 13, 20, 0, 0.5, 12, true, null);
         playerRepository.save(pe1);
         assertTrue(playerController.playerExists(pe1.getName()).getBody());
         assertFalse(playerController.playerExists("Not a player").getBody());
@@ -163,6 +163,7 @@ public class PlayerControllerIT extends ParthenonIntegrationTest {
         assertEquals(pm.getHealth(), pe.getHealth(), DELTA);
         assertEquals(pm.getMaxHealth(), pe.getMaxHealth(), DELTA);
         assertEquals(pm.getExpLevel(), pe.getExpLevel());
+        assertEquals(pm.getCurrExpPercentage(), pe.getCurrExpPercentage(), DELTA);
         assertEquals(pm.getFoodLevel(), pe.getFoodLevel());
 
         assertNotNull(pm.getItems());

@@ -35,6 +35,9 @@ public class PlayerEntity {
     @Column(name = "exp_level")
     private int expLevel;
 
+    @Column(name = "curr_exp_percentage")
+    private double currExpPercentage;
+
     @Column(name = "food_level")
     private int foodLevel;
 
@@ -49,12 +52,13 @@ public class PlayerEntity {
 
     protected PlayerEntity() {}
 
-    public PlayerEntity(String name, double health, double maxHealth, int expLevel, int foodLevel,
-            boolean isOnline, List<ItemStackEntity> items) {
+    public PlayerEntity(String name, double health, double maxHealth, int expLevel, double currExpPercentage,
+            int foodLevel, boolean isOnline, List<ItemStackEntity> items) {
         this.name = name;
         this.health = health;
         this.maxHealth = maxHealth;
         this.expLevel = expLevel;
+        this.currExpPercentage = currExpPercentage;
         this.foodLevel = foodLevel;
         this.isOnline = isOnline;
         this.items = items;
@@ -98,6 +102,14 @@ public class PlayerEntity {
 
     public void setExpLevel(int expLevel) {
         this.expLevel = expLevel;
+    }
+
+    public double getCurrExpPercentage() {
+        return currExpPercentage;
+    }
+
+    public void setCurrExpPercentage(double currExpPercentage) {
+        this.currExpPercentage = currExpPercentage;
     }
 
     public int getFoodLevel() {

@@ -8,7 +8,7 @@ define(['js/ParthenonApp', 'js/filter/RangeFilter', 'js/service/PlayerService'],
         (function getPlayers() {
             PlayerService.getPlayers().$promise.then(function(result) {
                 $scope.players = result;
-                $timeout(getPlayers, 5000);
+                $timeout(getPlayers, 2500);
             });
         })();
 
@@ -56,8 +56,9 @@ define(['js/ParthenonApp', 'js/filter/RangeFilter', 'js/service/PlayerService'],
             return 10 - $scope.numFullHungerIcons(foodLevel) - $scope.numHalfHungerIcons(foodLevel);
         };
 
-        $scope.toPercentage = function(decimalVal) {
-            return decimalVal.currExpPercentage * 100;
+        /** Returns the individual digits of the player's experience level. */
+        $scope.expLevelDigits = function(expLevel) {
+            return expLevel <= 0 ? [] : expLevel.toString().split('');
         };
 
         $scope.isHeldInMainHand = function(item) {

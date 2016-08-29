@@ -25,6 +25,9 @@
                         <div data-ng-repeat="i in [] | range:0:numEmptyHeartIcons(player.health)" class="d-inline pull-xs-left">
                             <img src="img/heart_empty.png" class="heart-icon">
                         </div>
+                        <div class="exp-level-container d-inline">
+                            <img data-ng-repeat="i in expLevelDigits(player.expLevel)" data-ng-src="img/exp_{{i}}.png" class="exp-level">
+                        </div>
                         <div data-ng-repeat="i in [] | range:0:numFullHungerIcons(player.foodLevel)" class="d-inline pull-xs-right">
                             <img src="img/hunger_full.png" class="hunger-icon">
                         </div>
@@ -39,9 +42,9 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="exp-bar-container">
-                            <div class="exp-bar-empty"></div>
-                            <div class="exp-bar-full" data-ng-style="{'width': player.currExpPercentage * 100 + '%'}"></div>
-                            <img src="img/exp_bar_empty.png" class="invisible">
+                            <div class="exp-bar exp-bar-empty"></div>
+                            <div class="exp-bar exp-bar-full" data-ng-style="{'width': player.currExpPercentage * 100 + '%'}"></div>
+                            <img src="img/exp_bar_empty.png" class="exp-bar invisible">
                         </div>
                     </div>
                 </div>

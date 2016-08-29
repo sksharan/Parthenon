@@ -1,7 +1,5 @@
 define(['js/ParthenonApp', 'js/filter/RangeFilter', 'js/service/PlayerService'], function(app) {
-
     "use strict";
-
     app.controller('PlayerController',
             ['$scope', '$timeout', 'PlayerService', function($scope, $timeout, PlayerService) {
 
@@ -34,15 +32,15 @@ define(['js/ParthenonApp', 'js/filter/RangeFilter', 'js/service/PlayerService'],
 
         /** Returns the number of full heart icons used to represent the player's health. */
         $scope.numFullHeartIcons = function(health) {
-            return Math.floor(health/2);
+            return Math.floor(Math.round(health)/2);
         };
         /** Returns the number of half heart icons used to represent the player's health. */
         $scope.numHalfHeartIcons = function(health) {
-            return health % 2;
+            return parseInt(Math.round(health)) % 2;
         };
         /** Returns the number of empty heart icons used to represent the player's health. */
         $scope.numEmptyHeartIcons = function(health) {
-            return 10 - $scope.numFullHeartIcons(health) - $scope.numHalfHeartIcons(health);
+            return 10 - $scope.numFullHeartIcons(Math.round(health)) - $scope.numHalfHeartIcons(Math.round(health));
         };
 
         /** Returns the number of full hunger icons used to represent the player's health. */
@@ -56,6 +54,10 @@ define(['js/ParthenonApp', 'js/filter/RangeFilter', 'js/service/PlayerService'],
         /** Returns the number of empty hunger icons used to represent the player's health. */
         $scope.numEmptyHungerIcons = function(foodLevel) {
             return 10 - $scope.numFullHungerIcons(foodLevel) - $scope.numHalfHungerIcons(foodLevel);
+        };
+
+        $scope.toPercentage = function(decimalVal) {
+            return decimalVal.currExpPercentage * 100;
         };
 
         $scope.isHeldInMainHand = function(item) {

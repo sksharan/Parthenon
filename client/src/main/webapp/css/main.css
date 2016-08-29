@@ -1,5 +1,5 @@
-.display-inline {
-    display: inline;
+html {
+    font-size: 10px !important;
 }
 
 .table > tbody > tr > td {
@@ -9,6 +9,7 @@
 .table > tbody > tr:hover {
     cursor: pointer;
 }
+
 .online-player-row {
     background-color: #D2EEBD
 }

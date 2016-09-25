@@ -1,17 +1,25 @@
+html {
+    font-size: 10px !important;
+}
+
 @font-face {
     /* Font by Manchson, can be downloaded at http://www.1001fonts.com/basis33-font.html#styles */
     font-family: pixel;
     src: url("../font/basis33.regular.ttf");
 }
-
-.pixel-text-regular {
-    color: #000000;
+.pixel-text {
     font-family: pixel;
-    font-size: 1.9rem;
 }
-.green-color {
-    color: #43AB1F;
+.pixel-text-regular {
+    font-size: 1.8rem !important;
 }
-.white-color {
-    color: #FFFFFF;
+.pixel-text-header {
+    font-size: 2.0rem !important;
+}
+.pixel-text-brand {
+    font-size: 2.7rem !important;
+}
+
+.white-font {
+    color: white;
 }

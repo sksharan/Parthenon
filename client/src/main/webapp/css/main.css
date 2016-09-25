@@ -1,38 +1,11 @@
-html {
-    font-size: 10px !important;
+.main-background {
+    background-image: url("../img/background.png");
 }
 
-.table > tbody > tr > td {
-    /* Cancel Bootstrap's vertical-align: top on tables */
-    vertical-align: middle !important;
+/* Bootstrap modal overrides */
+.modal-backdrop.in {
+    opacity: 0.25;
 }
-.table > tbody > tr:hover {
-    cursor: pointer;
-}
-
-.online-player-row {
-    background-color: #D2EEBD
-}
-.online-player-row:hover {
-    background-color: #BCE99A
-}
-.offline-player-row {
-    background-color: #DFDFDF
-}
-.offline-player-row:hover {
-    background-color: #D2D2D2
-}
-.dead-player-row {
-    background-color: #DEB1B1
-}
-.dead-player-row:hover {
-    background-color: #DFA4A4
-}
-
-.collapsible-background {
-    background-color: #F5F5F5;
-}
-.collapsible-background:hover {
-    background-color: #F5F5F5 !important;
-    cursor: auto !important;
+.modal-body {
+    background-color: #EAF5FF;
 }

@@ -1,0 +1,33 @@
+/* Cancel Bootstrap's vertical-align: top on tables */
+#players-table > tbody > tr > td {
+    vertical-align: middle;
+}
+#players-table > tbody > tr {
+    border-style: solid;
+    border-color: #241F26;
+}
+
+.online-player-row {
+    background-image: linear-gradient(rgba(166, 224, 109, 0.85), rgba(217, 255, 179, 0.85)),
+                      url("../img/pixels.png");
+}
+.online-player-row:hover {
+    background-image: linear-gradient(rgba(204, 255, 153, 0.8), rgba(204, 255, 153, 0.8)),
+                      url("../img/pixels.png");
+}
+.offline-player-row {
+    background-image: linear-gradient(rgba(170, 170, 170, 0.8), rgba(235, 235, 235, 0.8)),
+                      url("../img/pixels.png");
+}
+.offline-player-row:hover {
+    background-image: linear-gradient(rgba(225, 225, 225, 0.8), rgba(225, 225, 225, 0.8)),
+                      url("../img/pixels.png");
+}
+.dead-player-row {
+    background-image: linear-gradient(rgba(255, 119, 119, 0.8), rgba(255, 155, 155, 0.8)),
+                      url("../img/pixels.png");
+}
+.dead-player-row:hover {
+    background-image: linear-gradient(rgba(255, 153, 153, 0.8), rgba(255, 153, 153, 0.8)),
+                      url("../img/pixels.png");
+}

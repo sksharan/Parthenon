@@ -1,41 +1,45 @@
-<table class="table table-sm">
+<table id="players-table" class="table table-sm">
     <thead>
         <tr>
-            <td class="pixel-text-regular text-xs-center" width="25%">Name</td>
-            <td class="pixel-text-regular text-xs-center" width="25%">Data</td>
-            <td class="pixel-text-regular text-xs-center" width="25%"></td>
-            <td class="pixel-text-regular text-xs-center" width="25%"></td>
+            <td class="pixel-text pixel-text-regular white-font text-xs-center" width="25%">Name</td>
+            <td class="pixel-text pixel-text-regular white-font text-xs-center" width="25%">Status</td>
+            <td class="pixel-text pixel-text-regular white-font text-xs-center" width="25%"></td>
+            <td class="pixel-text pixel-text-regular white-font text-xs-center" width="25%"></td>
         </tr>
     </thead>
     <tbody data-ng-repeat="player in players">
-        <tr data-ng-click="toggleSelectedPlayer(player.name)"
-            data-ng-class="{'online-player-row': player.online, 'offline-player-row': !player.online, 'dead-player-row': isDead(player)}">
+        <tr data-ng-class="{'online-player-row': player.online, 'offline-player-row': !player.online, 'dead-player-row': isDead(player)}">
             <!-- Player name  -->
-            <td class="pixel-text-regular text-xs-center">{{player.name}}</td>
+            <td class="pixel-text pixel-text-regular text-xs-center">{{player.name}}</td>
             <!-- Player data -->
-            <td class="pixel-text-regular">
+            <td class="pixel-text pixel-text-regular">
                 <div class="row">
                     <div class="col-md-12">
-                        <div data-ng-repeat="i in [] | range:0:numFullHeartIcons(player.health)" class="d-inline pull-xs-left">
-                            <img src="img/heart_full.png" class="heart-icon">
+                        <div class="d-inline-block heart-icon-container" data-toggle="tooltip" data-placement="bottom" title="Health {{getHealthString(player)}}">
+                            <div data-ng-repeat="i in [] | range:0:numFullHeartIcons(player)" class="d-inline pull-xs-left">
+                                <img src="img/heart_full.png" class="heart-icon">
+                            </div>
+                            <div data-ng-repeat="i in [] | range:0:numHalfHeartIcons(player)" class="d-inline pull-xs-left">
+                                <img src="img/heart_half.png" class="heart-icon">
+                            </div>
+                            <div data-ng-repeat="i in [] | range:0:numEmptyHeartIcons(player)" class="d-inline pull-xs-left">
+                                <img src="img/heart_empty.png" class="heart-icon">
+                            </div>
                         </div>
-                        <div data-ng-repeat="i in [] | range:0:numHalfHeartIcons(player.health)" class="d-inline pull-xs-left">
-                            <img src="img/heart_half.png" class="heart-icon">
+                        <div class="exp-level-container" data-toggle="tooltip" data-placement="bottom"
+                             title="Level {{player.expLevel}}, Exp {{getCurrExp(player)}}/{{expNeeded(player)}}">
+                            <img data-ng-repeat="i in expLevelDigits(player)" data-ng-src="img/exp_{{i}}.png" class="exp-level">
                         </div>
-                        <div data-ng-repeat="i in [] | range:0:numEmptyHeartIcons(player.health)" class="d-inline pull-xs-left">
-                            <img src="img/heart_empty.png" class="heart-icon">
-                        </div>
-                        <div class="exp-level-container d-inline">
-                            <img data-ng-repeat="i in expLevelDigits(player.expLevel)" data-ng-src="img/exp_{{i}}.png" class="exp-level">
-                        </div>
-                        <div data-ng-repeat="i in [] | range:0:numFullHungerIcons(player.foodLevel)" class="d-inline pull-xs-right">
-                            <img src="img/hunger_full.png" class="hunger-icon">
-                        </div>
-                        <div data-ng-repeat="i in [] | range:0:numHalfHungerIcons(player.foodLevel)" class="d-inline pull-xs-right">
-                            <img src="img/hunger_half.png" class="hunger-icon">
-                        </div>
-                        <div data-ng-repeat="i in [] | range:0:numEmptyHungerIcons(player.foodLevel)" class="d-inline pull-xs-right">
-                            <img src="img/hunger_empty.png" class="hunger-icon">
+                        <div class="d-inline-block hunger-icon-container pull-xs-right" data-toggle="tooltip" data-placement="bottom" title="Hunger {{getHungerString(player)}}">
+                            <div data-ng-repeat="i in [] | range:0:numFullHungerIcons(player)" class="d-inline pull-xs-right">
+                                <img src="img/hunger_full.png" class="hunger-icon">
+                            </div>
+                            <div data-ng-repeat="i in [] | range:0:numHalfHungerIcons(player)" class="d-inline pull-xs-right">
+                                <img src="img/hunger_half.png" class="hunger-icon">
+                            </div>
+                            <div data-ng-repeat="i in [] | range:0:numEmptyHungerIcons(player)" class="d-inline pull-xs-right">
+                                <img src="img/hunger_empty.png" class="hunger-icon">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -49,29 +53,31 @@
                     </div>
                 </div>
             </td>
-            <!-- Unused -->
-            <td></td>
-            <td></td>
-        </tr>
-        <tr data-ng-show="isSelectedPlayer(player.name)" class="collapsible-background">
-            <td colspan="5" class="pixel-text-regular green-color">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div data-ng-repeat="item in player.items" class="parth-tooltip d-inline" data-ng-show="!isGeneral(item)">
-                            <span class="invtext" data-ng-show="{{item.amount}} > 1">{{item.amount}}</span>
-                            <button class="inventory-icon inventory-icon-selected inventory-icon-{{toCssItemName(item.name)}}" >
-                                <span class="parth-tooltiptext pixel-text-regular">{{toFriendlyItemName(toCssItemName(item.name))}}</span>
-                            </button>
-                        </div>
-                        <div data-ng-repeat="item in player.items" class="parth-tooltip d-inline" data-ng-show="isGeneral(item)">
-                            <span class="invtext" data-ng-show="{{item.amount}} > 1">{{item.amount}}</span>
-                            <button class="inventory-icon inventory-icon-{{toCssItemName(item.name)}}" >
-                                <span class="parth-tooltiptext pixel-text-regular">{{toFriendlyItemName(toCssItemName(item.name))}}</span>
-                            </button>
+            <!-- Player modal -->
+            <td class="pixel-text pixel-text-regular text-xs-center">
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#player-modal-{{player.name}}"
+                        data-ng-click="toggleAllowPlayersRefresh()">...</button>
+                <div class="modal text-xs-left" id="player-modal-{{player.name}}" data-backdrop="static" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header bg-inverse">
+                                <button type="button" class="close" data-dismiss="modal" data-ng-click="toggleAllowPlayersRefresh()">
+                                    <span class="pixel-text-header white-font">&times;</span>
+                                </button>
+                                <h4 class="pixel-text-header white-font m-b-0">{{player.name}}</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div data-ng-repeat="item in player.items" class="d-inline-block">
+                                    <div class="inventory-icon inventory-icon-{{toCssItemName(item.name)}}"
+                                         data-toggle="tooltip" data-placement="bottom" title="{{toFriendlyItemName(toCssItemName(item.name))}}"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </td>
+            <!-- Unused -->
+            <td></td>
         </tr>
     </tbody>
 </table>

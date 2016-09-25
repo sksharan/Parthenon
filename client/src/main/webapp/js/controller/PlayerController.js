@@ -5,80 +5,103 @@ define(['js/ParthenonApp', 'js/filter/RangeFilter', 'js/service/PlayerService'],
 
         /** Fetch updated list of players from server every few seconds. */
         $scope.players = [];
+        $scope.allowPlayersRefresh = true;
         (function getPlayers() {
             PlayerService.getPlayers().$promise.then(function(result) {
-                $scope.players = result;
-                $timeout(getPlayers, 2500);
+                if ($scope.allowPlayersRefresh) {
+                    $('[data-toggle="tooltip"]').tooltip('hide');
+                    $scope.players = result;
+                }
+                $timeout(getPlayers, 2555500);
             });
         })();
+        $scope.toggleAllowPlayersRefresh = function() {
+            $scope.allowPlayersRefresh = !$scope.allowPlayersRefresh;
+        }
 
-        /** Keep track of players that are considered "selected". */
-        $scope.selectedPlayers = [];
-        $scope.toggleSelectedPlayer = function(name) {
-            if ($scope.isSelectedPlayer(name)) {
-                $scope.selectedPlayers.splice($scope.selectedPlayers.indexOf(name), 1);
-            } else {
-                $scope.selectedPlayers.push(name);
-            }
-        };
-        $scope.isSelectedPlayer = function(name) {
-            return $scope.selectedPlayers.indexOf(name) !== -1;
-        };
-
-        /** Return true if the player is considered dead */
+        /** Return true if the player is considered dead. */
         $scope.isDead = function(player) {
-            return player.online && Math.floor(player.health) === 0;
+            return player.online && parseInt(player.health) == 0;
         };
 
         /** Returns the number of full heart icons used to represent the player's health. */
-        $scope.numFullHeartIcons = function(health) {
-            return Math.floor(Math.round(health)/2);
+        $scope.numFullHeartIcons = function(player) {
+            return Math.round(player.health / 2);
         };
         /** Returns the number of half heart icons used to represent the player's health. */
-        $scope.numHalfHeartIcons = function(health) {
-            return parseInt(Math.round(health)) % 2;
+        $scope.numHalfHeartIcons = function(player) {
+            return Math.round(player.health) % 2;
         };
         /** Returns the number of empty heart icons used to represent the player's health. */
-        $scope.numEmptyHeartIcons = function(health) {
-            return 10 - $scope.numFullHeartIcons(Math.round(health)) - $scope.numHalfHeartIcons(Math.round(health));
+        $scope.numEmptyHeartIcons = function(player) {
+            return Math.max(10, Math.round(player.maxHealth / 2))
+                   - $scope.numFullHeartIcons(player) - $scope.numHalfHeartIcons(player);
         };
+        /** Get string representation of the players health. */
+        $scope.getHealthString = function(player) {
+            return Math.round(player.health) + "/" + Math.round(player.maxHealth);
+        }
 
         /** Returns the number of full hunger icons used to represent the player's health. */
-        $scope.numFullHungerIcons = function(foodLevel) {
-            return Math.floor(foodLevel/2);
+        $scope.numFullHungerIcons = function(player) {
+            return Math.round(player.foodLevel / 2);
         };
         /** Returns the number of half hunger icons used to represent the player's health. */
-        $scope.numHalfHungerIcons = function(foodLevel) {
-            return foodLevel % 2;
+        $scope.numHalfHungerIcons = function(player) {
+            return player.foodLevel % 2;
         };
         /** Returns the number of empty hunger icons used to represent the player's health. */
-        $scope.numEmptyHungerIcons = function(foodLevel) {
-            return 10 - $scope.numFullHungerIcons(foodLevel) - $scope.numHalfHungerIcons(foodLevel);
+        $scope.numEmptyHungerIcons = function(player) {
+            return 10 - $scope.numFullHungerIcons(player) - $scope.numHalfHungerIcons(player);
         };
+        /** Get string representation of the players hunger. */
+        $scope.getHungerString = function(player) {
+            return player.foodLevel + "/ 20";
+        }
 
         /** Returns the individual digits of the player's experience level. */
-        $scope.expLevelDigits = function(expLevel) {
-            return expLevel <= 0 ? [] : expLevel.toString().split('');
+        $scope.expLevelDigits = function(player) {
+            return player.expLevel <= 0 ? [] : player.expLevel.toString().split('');
+        };
+        $scope.getCurrExp = function(player) {
+            return Math.floor(player.currExpPercentage * $scope.expNeeded(player));
+        }
+        /** Get the amount of experience needed at the current level to level up. */
+        $scope.expNeeded = function(player) {
+            if (player.expLevel < 17) {
+                return 2 * player.expLevel + 7;
+            } else if (player.expLevel < 32) {
+                return 5 * player.expLevel - 38;
+            } else {
+                return 9 * player.expLevel - 158;
+            }
         };
 
+        /** Returns true if the item is held in the player's main hand. */
         $scope.isHeldInMainHand = function(item) {
             return item.type === "HELD_IN_MAIN_HAND";
         };
+        /** Returns true if the item is held in the player's off hand. */
         $scope.isHeldInOffHand = function(item) {
             return item.type === "HELD_IN_OFF_HAND";
         };
+        /** Returns true if the item is equipped by the player as boots. */
         $scope.isEquippedBoots = function(item) {
             return item.type === "EQUIPPED_BOOTS";
         };
+        /** Returns true if the item is equipped by the player as a chestplate. */
         $scope.isEquippedChestplate = function(item) {
             return item.type === "EQUIPPED_CHESTPLATE";
         };
+        /** Returns true if the item is equipped by the player a helmet. */
         $scope.isEquippedHelmet = function(item) {
             return item.type === "EQUIPPED_HELMET";
         };
+        /** Returns true if the item is equipped by the player as leggings. */
         $scope.isEquippedLeggings = function(item) {
             return item.type === "EQUIPPED_LEGGINGS";
         };
+        /** Returns true if the item is not equipped or being actively used by the player. */
         $scope.isGeneral = function(item) {
             return item.type === "GENERAL";
         };
@@ -108,11 +131,9 @@ define(['js/ParthenonApp', 'js/filter/RangeFilter', 'js/service/PlayerService'],
                            .replace(/[ \(\)=\/]/g, "_")
                            .replace(/_/g, "");
         };
-
         $scope.toFriendlyItemName = function(cssItemName) {
-            return spigotNameToFriendlyName[cssItemName].replace(/ /g,  "_");
+            return spigotNameToFriendlyName[cssItemName];
         };
-
         /* Generated by ../WEB-INF/scrips/inventory_icon.lua */
         var spigotNameToFriendlyName = {
             "RECORD110": "11 Disc",

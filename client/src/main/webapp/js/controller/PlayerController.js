@@ -12,7 +12,7 @@ define(['js/ParthenonApp', 'js/filter/RangeFilter', 'js/service/PlayerService'],
                     $('[data-toggle="tooltip"]').tooltip('hide');
                     $scope.players = result;
                 }
-                $timeout(getPlayers, 2555500);
+                $timeout(getPlayers, 1000);
             });
         })();
         $scope.toggleAllowPlayersRefresh = function() {

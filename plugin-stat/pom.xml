@@ -71,28 +71,6 @@
             <goals>
               <goal>shade</goal>
             </goals>
-            <configuration>
-              <relocations>
-                <relocation>
-                  <pattern>com.</pattern>
-                  <shadedPattern>parthenon.com.</shadedPattern>
-                  <excludes>
-                    <exclude>com.github.sksharan.parthenon.*</exclude>
-                  </excludes>
-                </relocation>
-                <relocation>
-                  <pattern>org.</pattern>
-                  <shadedPattern>parthenon.org.</shadedPattern>
-                  <excludes>
-                    <exclude>org.bukkit.*</exclude>
-                  </excludes>
-                </relocation>
-                <relocation>
-                  <pattern>net.</pattern>
-                  <shadedPattern>parthenon.org</shadedPattern>
-                </relocation>
-              </relocations>
-            </configuration>
           </execution>
         </executions>
       </plugin>

@@ -42,6 +42,12 @@ mvn install
 ```
 
 ## Running Parthenon:
+- Copy plugin jar to spigot plugins directory:
+```
+copy: plugin-stat/target/plugin-stat-1.0-SNAPSHOT.jar
+to: <spigotDirectory>/plugins
+```
+
 - Running Client
 ```
 cd client

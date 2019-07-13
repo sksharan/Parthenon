@@ -44,6 +44,7 @@ mvn install
 ## Running Parthenon:
 - Running Client
 ```
+cd client
 mvn jetty:run
 ```
 
